@@ -13,7 +13,8 @@ export const CREATE_USER = gql`
     $userName: String!
     $phoneNum: String!
     $birthday: String!
-    $introduce: String!
+    $introduce: String
+    $classes: Int
   ) {
     createUser(
       email: $email
@@ -22,11 +23,13 @@ export const CREATE_USER = gql`
       phoneNum: $phoneNum
       birthday: $birthday
       introduce: $introduce
+      classes: $classes
     )
   }
 `;
 
 export const LOCAL_LOG_IN = gql`
-  mutation logUserIn($token: String!){
+  mutation logUserIn($token: String!) {
     logUserIn(token: $token) @client
-    `;
+  }
+`;

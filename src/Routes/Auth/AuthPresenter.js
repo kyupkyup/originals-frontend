@@ -39,7 +39,18 @@ const Form = styled(Box)`
   }
 `;
 
+const StateChanger = styled(Box)`
+  text-align: center;
+  padding: 20px 35px;
+`;
+
+// const Link = styled.span`
+//   color: ${props => props.theme.blueColor};
+//   cursor: pointer;
+// `;
+
 export default ({
+  setAction,
   action,
   email,
   password,
@@ -72,9 +83,9 @@ export default ({
       {action === "login" && (
         <>
           <Helmet>
-            <title>계정 생성 | Originals</title>
+            <title>로그인 | Originals</title>
           </Helmet>
-          <form>
+          <form onSubmit={onSubmit}>
             <Input placeholder={"이메일"} {...email} type="email" />
             <Input placeholder={"비밀번호"} {...password} type="password" />
 
@@ -83,5 +94,16 @@ export default ({
         </>
       )}
     </Form>
+    <StateChanger>
+      {action === "login" ? (
+        <>
+          <Button onClick={() => setAction("signUp")} text="계정 생성" />
+        </>
+      ) : (
+        <>
+          <Button onClick={() => setAction("login")} text="로그인" />
+        </>
+      )}
+    </StateChanger>
   </Wrapper>
 );

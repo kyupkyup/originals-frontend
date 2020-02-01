@@ -6,7 +6,7 @@ import { LOG_IN, CREATE_USER, LOCAL_LOG_IN } from "./AuthQueries";
 import { toast } from "react-toastify";
 
 export default () => {
-  const [action, setAction] = useState("logIn");
+  const [action, setAction] = useState("login");
 
   const email = useInput("");
   const password = useInput("");
@@ -26,7 +26,8 @@ export default () => {
       userName: userName.value,
       phoneNum: phoneNum.value,
       birthday: birthday.value,
-      introduce: introduce.value
+      introduce: introduce.value,
+      classes: 1
     }
   });
   const [localLogInMutation] = useMutation(LOCAL_LOG_IN);
@@ -43,6 +44,7 @@ export default () => {
             if (token !== "" && token !== undefined) {
               localLogInMutation({ variables: { token } });
             }
+            console.log(token);
           } catch {
             toast.error("비밀번호가 틀렸습니다.");
           }
@@ -54,6 +56,28 @@ export default () => {
       }
     } else if (action === "signUp") {
       // TODO
+      if (
+        email.value !== "" &&
+        userName.value !== "" &&
+        password.value !== "" &&
+        birthday.value !== "" &&
+        phoneNum.value !== "" &&
+        introduce.value !== ""
+      ) {
+        try {
+          const createUser = await createUserMutation();
+          if (!createUser) {
+            toast.error("계정을 생성할 수 없습니다. 다시 시도해주세요.");
+          } else {
+            toast.success("계정이 생성되었습니다! 로그인 해주세요.");
+            setTimeout(() => setAction("login"), 3000);
+          }
+        } catch (e) {
+          toast.error("계정을 생성할 수 없습니다. 다시 시도해주세요.");
+        }
+      } else {
+        toast.error("모든 칸을 다 채워주세요.");
+      }
     }
   };
 
