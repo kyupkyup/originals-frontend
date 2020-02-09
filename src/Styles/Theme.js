@@ -20,5 +20,9 @@ export default {
                 border-radius:${BORDER_RADIUS};
                 background-color:#E1E8ED;
 
-        `
+        `,
+  borderTopBottom: `border-top:2px solid #CED9E0;
+                        border-bottom:2px solid #CED9E0;
+                        margin-bottom:5px;
+                        `
 };

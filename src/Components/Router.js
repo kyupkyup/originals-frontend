@@ -3,31 +3,39 @@ import PropTypes from "prop-types";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Auth from "../Routes/Auth";
 import Main from "../Routes/Main";
-import Bulletin from "../Routes/Bulletin"
-import Profile from "../Routes/Bulletin"
+import Bulletin from "../Routes/Bulletin";
+import Profile from "../Routes/Profile";
+import Book from "../Routes/Book";
+import Meeting from "../Routes/Meeting";
+import Header from "../Components/Header";
 
 const LoggedInRoutes = () => (
-  <Switch>
-    <Route exact path="/" component={Main} />
-    <Route exact path="/Bulletin" component={Bulletin} />
-    <Route exact path="/Profile" component={Profile} />
-    <Redirect from="*" to="/" />
-  </Switch>
+  <>
+    <Header />
+    <Switch>
+      <Route exact path="/" component={Main} />
+      <Route path="/Bulletin" component={Bulletin} />
+      <Route path="/Book" component={Book} />
+      <Route path="/Meeting" component={Meeting} />
+      <Route path="/:email" component={Profile} />
+
+      <Redirect from="*" to="/" />
+    </Switch>
+  </>
 );
 
 const LoggedOutRoutes = () => (
   <Switch>
-    <Route exact path="/" component={Auth}/>
-    
+    <Route exact path="/" component={Auth} />
+    <Redirect from="*" to="/" />
   </Switch>
 );
 
-const AppRouter = ({ isLoggedIn }) => (
-   isLoggedIn ? <LoggedInRoutes/> : <LoggedOutRoutes /> 
-);
+const AppRouter = ({ isLoggedIn }) =>
+  isLoggedIn ? <LoggedInRoutes /> : <LoggedOutRoutes />;
 
 AppRouter.propTypes = {
-    isLoggedIn: PropTypes.bool.isRequired
-}
+  isLoggedIn: PropTypes.bool.isRequired
+};
 
 export default AppRouter;

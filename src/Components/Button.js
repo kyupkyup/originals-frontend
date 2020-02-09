@@ -8,7 +8,7 @@ const Container = styled.button`
   border-radius: ${props => props.theme.borderRadius};
   color: white;
   font-weight: 600;
-  background-color: ${props => props.theme.blueColor};
+  background-color: ${props => props.theme.darkBlueColor};
   text-align: center;
   padding: 7px 0px;
   font-size: 14px;
