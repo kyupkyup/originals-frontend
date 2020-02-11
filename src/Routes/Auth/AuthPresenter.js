@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Input from "../../Components/Input";
-import Button from "../../Components/Button";
+import Button from "../../Components/Button/Button";
 import Helmet from "react-helmet";
 
 // string literals are supported through IconName union type

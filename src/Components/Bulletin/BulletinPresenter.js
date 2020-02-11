@@ -10,8 +10,9 @@ import { HeartFull, HeartEmpty, Comment as CommentIcon } from "../Icons";
 
 const BulletinContainer2 = styled.div`
   ${props => props.theme.whiteBox}
-  width: 600px;
+  width: 650px;
   height: 80vh;
+  overflow-y: auto;
   margin-left: 20px;
   a {
     color: inherit;
@@ -94,6 +95,7 @@ const Textarea = styled(TextareaAutoSize)`
   font-size: 16px;
   background-color: #e1e8ed;
   margin-top: 15px;
+  margin-bottom: 20px;
 `;
 
 const Comments = styled.ul`

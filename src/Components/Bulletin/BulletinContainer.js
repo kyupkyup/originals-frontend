@@ -75,6 +75,7 @@ const BulletinContainer = ({
       } catch {
         toast.error("댓글을 입력할 수 없습니다.");
       }
+      newComment.setValue("");
     }
   };
   return (

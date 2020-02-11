@@ -1,19 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import "react-tabs/style/react-tabs.css";
 // import TextareaAutoSize from "react-autosize-textarea";
 import FatText from "../FatText";
-import Loader from "../Loader";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { Link } from "react-router-dom";
 import Bulletin from "../Bulletin";
 import { HeartFull, ViewIcon } from "../Icons";
-import { nonInputTypeOnVarMessage } from "graphql/validation/rules/VariablesAreInputTypes";
 
 const TabContainer = styled(Tabs)`
-  width: 380px;
+  width: 370px;
   height: 80vh;
   font-size: 10pt;
+  
 `;
 const Container = styled.div`
   width: 100%;

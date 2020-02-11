@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Avatar from "../../Components/Avatar";
 import FatText from "../../Components/FatText";
-import Button from "../../Components/Button";
+import Button from "../../Components/Button/Button";
 import { Helmet } from "react-helmet";
 import Loader from "../../Components/Loader";
 
