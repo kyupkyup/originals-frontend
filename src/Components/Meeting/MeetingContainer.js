@@ -54,6 +54,7 @@ MeetingContainer.propTypes = {
   user: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
       avatar: PropTypes.string.isRequired,
       userName: PropTypes.string.isRequired,
       classes: PropTypes.string.isRequired
@@ -71,6 +72,7 @@ MeetingContainer.propTypes = {
         PropTypes.shape({
           id: PropTypes.string.isRequired,
           avatar: PropTypes.string.isRequired,
+          email: PropTypes.string.isRequired,
           userName: PropTypes.string.isRequired,
           classes: PropTypes.string.isRequired
         })

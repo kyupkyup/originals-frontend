@@ -76,7 +76,7 @@ export default ({
   id,
   title,
   main,
-  user: { avatar, userName, classes },
+  user: { avatar, userName, classes, email },
   meetingTime,
   meetingPlace,
   meetingPrice,
@@ -99,7 +99,7 @@ export default ({
         {
           <User>
             <Avatar size="md" url={avatar} />
-            <Link to={`/${userName}`}>
+            <Link to={`/${email}`}>
               <FatText text={userName} />
             </Link>
             <Classes>

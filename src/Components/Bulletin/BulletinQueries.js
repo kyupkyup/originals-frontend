@@ -13,6 +13,7 @@ export const SEE_POST = gql`
         avatar
         userName
         classes
+        email
       }
       classifyNum
       main
@@ -36,6 +37,7 @@ export const SEE_POST = gql`
           id
           userName
           avatar
+          email
         }
         text
       }

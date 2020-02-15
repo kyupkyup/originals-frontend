@@ -115,6 +115,7 @@ BulletinContainer.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       userName: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
       avatar: PropTypes.string.isRequired,
       classes: PropTypes.number.isRequired
     }).isRequired
@@ -144,6 +145,7 @@ BulletinContainer.propTypes = {
       user: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.string.isRequired,
+          email: PropTypes.string.isRequired,
           userName: PropTypes.string.isRequired,
           avatar: PropTypes.string.isRequired
         })

@@ -16,6 +16,7 @@ const SHOW_MEETING_LIST = gql`
         avatar
         userName
         classes
+        email
       }
       meetingTime
       meetingPlace
@@ -29,6 +30,7 @@ const SHOW_MEETING_LIST = gql`
           userName
           avatar
           classes
+          email
         }
       }
       isParticipated

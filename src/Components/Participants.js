@@ -14,6 +14,7 @@ const SEE_PARTICIPANTS_LIST = gql`
       id
       user {
         id
+        email
         avatar
         userName
         classes
@@ -65,7 +66,7 @@ const Participants = ({ meetingId }) => {
           <Participant key={participant.id}>
             <Avatar size="sm" url={participant.user.avatar} className="" />
             <UserColumn>
-              <Link to={`/${participant.user.userName}`}>
+              <Link to={`/${participant.user.email}`}>
                 <FatText text={participant.user.userName} />
               </Link>
               <Classes>

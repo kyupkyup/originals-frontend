@@ -12,13 +12,21 @@ const InputType = styled.input`
   padding: 0px 15px;
 `;
 
-const Input = ({ placeholder, className, value, onChange, type = "text" }) => (
+const Input = ({
+  placeholder,
+  className,
+  value,
+  onChange,
+  type = "text",
+  disabled = false
+}) => (
   <InputType
     className={className}
     placeholder={placeholder}
     value={value}
     onChange={onChange}
     type={type}
+    disabled={disabled}
   />
 );
 Input.propTypes = {
@@ -26,7 +34,8 @@ Input.propTypes = {
   placeholder: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  type: PropTypes.string
+  type: PropTypes.string,
+  disabled: PropTypes.bool
 };
 
 export default Input;
