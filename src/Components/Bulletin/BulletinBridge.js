@@ -34,7 +34,6 @@ const BulletinBridge = postId => {
         createdAt
       }
     } = data;
-    console.log(author);
     return (
       <BulletinContainer
         id={id}

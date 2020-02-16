@@ -2,18 +2,32 @@ import React, { useState } from "react";
 import BulletinListPresenter from "./BulletinListPresenter";
 import PropTypes from "prop-types";
 
-const BulletinListContainer = ({ id, classifyNum, posts }) => {
+const BulletinListContainer = ({
+  id,
+  classifyNum,
+  posts,
+  setEditId,
+  userId
+}) => {
   const [action, setAction] = useState("nothing");
 
-  const openBulletin = async postId => {
+  const openBulletin = async post => {
     if (action === "nothing") {
-      await setAction(postId);
+      await setAction(post.id);
+      if (userId === post.author.id) {
+        await setEditId(post.id);
+      } else {
+        await setEditId("");
+      }
     } else if (action !== "nothing") {
-      await setAction(postId);
+      await setAction(post.id);
+      if (userId === post.author.id) {
+        await setEditId(post.id);
+      } else {
+        await setEditId("");
+      }
     }
   };
-
-  console.log(action + "리스트 프리젠터");
 
   return (
     <BulletinListPresenter
@@ -33,6 +47,11 @@ BulletinListContainer.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
+      author: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired
+        })
+      ),
       likesCount: PropTypes.number,
       viewsCount: PropTypes.number,
       classifyNum: PropTypes.number.isRequired,

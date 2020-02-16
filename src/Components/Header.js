@@ -53,13 +53,15 @@ export default withRouter(() => {
           <Link to="/">Originals</Link>
         </HeaderColumn>
         <HeaderColumn>
-          <HeaderLink to="/Bulletin">게시판</HeaderLink>
+          {!loading && data && data.me ? (
+            <HeaderLink to={`/Bulletin/${data.me.id}`}>게시판</HeaderLink>
+          ) : null}
           <HeaderLink to="/Meeting">모임</HeaderLink>
           {/* <HeaderLink to="/Book">도서</HeaderLink> */}
           {!loading && data && data.me ? (
-            <HeaderLink to={data.me.email}>프로필</HeaderLink>
+            <HeaderLink to={`/Profile/${data.me.email}`}>프로필</HeaderLink>
           ) : (
-            <HeaderLink to="/">프로필</HeaderLink>
+            <HeaderLink to="/Profile">프로필</HeaderLink>
           )}
         </HeaderColumn>
       </HeaderWrapper>

@@ -5,6 +5,7 @@ import Avatar from "../Avatar";
 import { Link } from "react-router-dom";
 import DropdownButton from "../Button/DropdownButton";
 import Participants from "../Participants";
+import Button from "../Button/Button";
 const MeetingContainer = styled.div`
   width: 800px;
   display: flex;
@@ -71,6 +72,10 @@ const MeetingHeadCounts = styled.div`
   width: 100%;
   padding: 10px;
 `;
+const ButtonContainer = styled.div`
+  width: 100%;
+  margin-top: 10px;
+`;
 
 export default ({
   id,
@@ -89,7 +94,6 @@ export default ({
   dropdown,
   clickDrop
 }) => {
-  console.log(dropdown);
   return (
     <MeetingContainer>
       <Header>
@@ -126,6 +130,9 @@ export default ({
         onClick={() => clickDrop()}
       />
       {dropdown ? <Participants meetingId={id} /> : null}
+      <ButtonContainer>
+        <Button text={"참석하기"} onClick={() => {}} />
+      </ButtonContainer>
     </MeetingContainer>
   );
 };

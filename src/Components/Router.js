@@ -14,10 +14,10 @@ const LoggedInRoutes = () => (
     <Header />
     <Switch>
       <Route exact path="/" component={Main} />
-      <Route path="/Bulletin" component={Bulletin} />
+      <Route path="/Bulletin/:id" component={Bulletin} />
       <Route path="/Book" component={Book} />
       <Route path="/Meeting" component={Meeting} />
-      <Route path="/:email" component={Profile} />
+      <Route path="/Profile/:email" component={Profile} />
 
       <Redirect from="*" to="/" />
     </Switch>

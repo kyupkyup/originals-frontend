@@ -57,7 +57,7 @@ const BulletinLine = ({ post, openBulletin }) => {
   return (
     <Container>
       <ContainerDivider>
-        <Title text={post.title} onClick={() => openBulletin(post.id)} />
+        <Title text={post.title} onClick={() => openBulletin(post)} />
       </ContainerDivider>
       <ContainerDivider>
         <ViewContainer>

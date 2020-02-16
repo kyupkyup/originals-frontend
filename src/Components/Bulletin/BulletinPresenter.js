@@ -131,61 +131,62 @@ export default ({
   onKeyPress,
   newComment
 }) => {
-  console.log(createdAt);
   return (
-    <BulletinContainer2>
-      <Header>
-        <Avatar size="md" url={author.avatar} className="" />
-        <UserColumn>
-          <Link to={`/${author.email}`}>
-            <FatText text={author.userName} />
-          </Link>
-          <Classes>
-            {author.classes === 1
-              ? "신입회원"
-              : author.classes === 2
-              ? "일반회원"
-              : "정회원"}
-          </Classes>
-        </UserColumn>
-      </Header>
-      <TitleContainer>
-        <Title text={title} />
-      </TitleContainer>
-      <Main>{caption}</Main>
-      <Files>
-        {files && files.map(file => <File key={file.id} src={file.url} />)} 　
-      </Files>
-      <Meta>
-        <Metas>
-          <Button onClick={toggleLike}>
-            {isLiked ? <HeartFull /> : <HeartEmpty />}
-          </Button>
-          <MetaText text={likesCount + ""} />
-        </Metas>
-        <Metas>
-          <CommentIcon />
-          <MetaText text={commentsCount + ""} />
-        </Metas>
-      </Meta>
-      <TimeStamp>{createdAt + ""}</TimeStamp>
+    <>
+      <BulletinContainer2>
+        <Header>
+          <Avatar size="md" url={author.avatar} className="" />
+          <UserColumn>
+            <Link to={`/${author.email}`}>
+              <FatText text={author.userName} />
+            </Link>
+            <Classes>
+              {author.classes === 1
+                ? "신입회원"
+                : author.classes === 2
+                ? "일반회원"
+                : "정회원"}
+            </Classes>
+          </UserColumn>
+        </Header>
+        <TitleContainer>
+          <Title text={title} />
+        </TitleContainer>
+        <Main>{caption}</Main>
+        <Files>
+          {files && files.map(file => <File key={file.id} src={file.url} />)} 　
+        </Files>
+        <Meta>
+          <Metas>
+            <Button onClick={toggleLike}>
+              {isLiked ? <HeartFull /> : <HeartEmpty />}
+            </Button>
+            <MetaText text={likesCount + ""} />
+          </Metas>
+          <Metas>
+            <CommentIcon />
+            <MetaText text={commentsCount + ""} />
+          </Metas>
+        </Meta>
+        <TimeStamp>{createdAt + ""}</TimeStamp>
 
-      {comments && (
-        <Comments>
-          {comments.map(comment => (
-            <Comment key={comment.id}>
-              <FatText text={comment.user.userName + ""} />
-              {comment.text}
-            </Comment>
-          ))}
-        </Comments>
-      )}
-      <Textarea
-        placeholder={"댓글을 입력하세요."}
-        value={newComment.value}
-        onChange={newComment.onChange}
-        onKeyPress={onKeyPress}
-      ></Textarea>
-    </BulletinContainer2>
+        {comments && (
+          <Comments>
+            {comments.map(comment => (
+              <Comment key={comment.id}>
+                <FatText text={comment.user.userName + ""} />
+                {comment.text}
+              </Comment>
+            ))}
+          </Comments>
+        )}
+        <Textarea
+          placeholder={"댓글을 입력하세요."}
+          value={newComment.value}
+          onChange={newComment.onChange}
+          onKeyPress={onKeyPress}
+        ></Textarea>
+      </BulletinContainer2>
+    </>
   );
 };

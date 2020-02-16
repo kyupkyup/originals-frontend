@@ -6,9 +6,10 @@ import { SEE_POST, TOGGLE_POST } from "./BulletinQueries";
 import { useMutation } from "react-apollo-hooks";
 import { TOGGLE_LIKE, ADD_COMMENT } from "./BulletinQueries";
 import { toast } from "react-toastify";
+import Button from "../Button/Button";
 import Loader from "../Loader";
 import useInput from "../../Hooks/useInput";
-
+import { ME } from "../../SharedQueries";
 const BulletinContainer = ({
   id,
   files,
@@ -28,7 +29,6 @@ const BulletinContainer = ({
   comments,
   createdAt
 }) => {
-  console.log(createdAt);
   const [toggleLikeMutation] = useMutation(TOGGLE_LIKE, {
     variables: { postId: id }
   });
@@ -39,7 +39,6 @@ const BulletinContainer = ({
 
   const [isLikedS, setIsLiked] = useState(isLiked);
   const [likeCountS, setLikeCount] = useState(likesCount);
-
   const [addCommentMutation] = useMutation(ADD_COMMENT, {
     variables: { postId: id, text: newComment.value }
   });
@@ -79,27 +78,29 @@ const BulletinContainer = ({
     }
   };
   return (
-    <BulletinPresenter
-      id={id}
-      files={files}
-      author={author}
-      classifyNum={classifyNum}
-      main={main}
-      announcement={announcement}
-      title={title}
-      caption={caption}
-      isLiked={isLikedS}
-      viewsCount={viewsCount}
-      likesCount={likeCountS}
-      commentsCount={commentsCount}
-      views={views}
-      likes={likes}
-      comments={comments}
-      createdAt={createdAtParsed(createdAt)}
-      toggleLike={toggleLike}
-      onKeyPress={onKeyPress}
-      newComment={newComment}
-    />
+    <>
+      <BulletinPresenter
+        id={id}
+        files={files}
+        author={author}
+        classifyNum={classifyNum}
+        main={main}
+        announcement={announcement}
+        title={title}
+        caption={caption}
+        isLiked={isLikedS}
+        viewsCount={viewsCount}
+        likesCount={likeCountS}
+        commentsCount={commentsCount}
+        views={views}
+        likes={likes}
+        comments={comments}
+        createdAt={createdAtParsed(createdAt)}
+        toggleLike={toggleLike}
+        onKeyPress={onKeyPress}
+        newComment={newComment}
+      />
+    </>
   );
 };
 
