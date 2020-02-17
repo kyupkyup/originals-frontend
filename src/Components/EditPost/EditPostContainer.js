@@ -96,8 +96,6 @@ const EditPostContainer = ({ postId, setEdit, refetch }) => {
         const {
           data: { editPost }
         } = await editMutation();
-        await refetch();
-
         if (!editPost) {
           toast.error("게시글을 등록할 수 없습니다.");
         } else if (editPost) {

@@ -16,7 +16,7 @@ const LoggedInRoutes = () => (
       <Route exact path="/" component={Main} />
       <Route path="/Bulletin/:id" component={Bulletin} />
       <Route path="/Book" component={Book} />
-      <Route path="/Meeting" component={Meeting} />
+      <Route path="/Meeting/:id" component={Meeting} />
       <Route path="/Profile/:email" component={Profile} />
 
       <Redirect from="*" to="/" />

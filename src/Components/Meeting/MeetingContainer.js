@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import MeetingPresenter from "./MeetingPresenter";
+import { useMutation } from "react-apollo-hooks";
+import { PARTICIPATE } from "./MeetingQueries";
+import { toast } from "react-toastify";
 
 const MeetingContainer = ({
   id,
@@ -15,7 +18,10 @@ const MeetingContainer = ({
   participants,
   isParticipated,
   participantsCount,
-  createdAt
+  createdAt,
+  userId,
+  setEditId,
+  setEditing
 }) => {
   const [dropdown, setDropdown] = useState(false);
 
@@ -27,9 +33,25 @@ const MeetingContainer = ({
     }
   };
 
+  const [participateMutation] = useMutation(PARTICIPATE, {
+    variables: { id: id }
+  });
+
+  const participate = async () => {
+    const {
+      data: { paritcipate }
+    } = await participateMutation();
+    if (paritcipate) {
+      toast.success("참석에 성공했습니다.");
+    } else if (!participate) {
+      toast.error("다시 시도해주세요.");
+    }
+  };
+  console.log(userId);
+
   return (
     <MeetingPresenter
-      id={id}
+      meetingId={id}
       title={title}
       main={main}
       user={user}
@@ -44,6 +66,10 @@ const MeetingContainer = ({
       createdAt={createdAt}
       dropdown={dropdown}
       clickDrop={clickDrop}
+      participate={participate}
+      userId={userId}
+      setEditId={setEditId}
+      setEditing={setEditing}
     />
   );
 };

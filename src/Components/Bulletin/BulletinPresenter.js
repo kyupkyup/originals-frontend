@@ -22,11 +22,8 @@ const BulletinContainer2 = styled.div`
 const Header = styled.header`
   padding: 10px;
   display: flex;
-
   align-items: center;
-  margin: 10px;
-  width: 100%;
-  max-width: 580px;
+  width: 90%;
 `;
 
 const UserColumn = styled.div`
@@ -41,11 +38,12 @@ const TitleContainer = styled.div`
   margin-left: 10px;
   padding: 10px;
   margin-bottom: 10px;
-  width: 100%;
+  width: ;
   height: 60px;
 `;
 
 const Title = styled(FatText)`
+  width: 80%;
   font-size: 12pt;
 `;
 const Main = styled.div`

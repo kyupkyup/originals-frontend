@@ -8,7 +8,7 @@ const Container = styled.button`
   border-radius: ${props => props.theme.borderRadius};
   color: white;
   font-weight: 600;
-  background-color: ${props => props.theme.darkBlueColor};
+  background-color: ${props => props.theme.lightGray1};
   text-align: center;
   padding: 7px 0px;
   font-size: 14px;
@@ -16,7 +16,9 @@ const Container = styled.button`
 `;
 
 const Button = ({ text, onClick }) => (
-  <Container onClick={onClick}>{text}</Container>
+  <Container onClick={onClick} disabled>
+    {text}
+  </Container>
 );
 
 Button.propTypes = {

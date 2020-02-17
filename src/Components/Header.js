@@ -44,7 +44,6 @@ const HeaderLink = styled(Link)`
 
 export default withRouter(() => {
   const { data, loading } = useQuery(ME);
-  console.log(data);
 
   return (
     <Header>
@@ -55,9 +54,14 @@ export default withRouter(() => {
         <HeaderColumn>
           {!loading && data && data.me ? (
             <HeaderLink to={`/Bulletin/${data.me.id}`}>게시판</HeaderLink>
-          ) : null}
-          <HeaderLink to="/Meeting">모임</HeaderLink>
-          {/* <HeaderLink to="/Book">도서</HeaderLink> */}
+          ) : (
+            <HeaderLink to={`/Bulletin/`}>게시판</HeaderLink>
+          )}
+          {!loading && data && data.me ? (
+            <HeaderLink to={`/Meeting/${data.me.id}`}>모임</HeaderLink>
+          ) : (
+            <HeaderLink to={`/Meeting/`}>모임</HeaderLink>
+          )}
           {!loading && data && data.me ? (
             <HeaderLink to={`/Profile/${data.me.email}`}>프로필</HeaderLink>
           ) : (
