@@ -2,10 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./Components/App";
 import { ApolloProvider } from "react-apollo-hooks";
-import Client from "./Apollo/Client"
-// import "~normalize.css";
-// import "~@blueprintjs/core/lib/css/blueprint.css";
-// import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
+import Client from "./Apollo/Client";
 
 ReactDOM.render(
   <ApolloProvider client={Client}>
@@ -13,4 +10,3 @@ ReactDOM.render(
   </ApolloProvider>,
   document.getElementById("root")
 );
-
