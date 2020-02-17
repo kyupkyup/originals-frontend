@@ -5,7 +5,6 @@ import useInput from "../../Hooks/useInput";
 import EditPostPresenter from "./EditPostPresenter";
 import { SEE_POST, EDIT_POST, WRITE_POST } from "./EditPostQueries";
 import Loader from "../Loader";
-import "react-dropdown/style.css";
 import { classifyOptions } from "../../utils/dropdownOptions";
 import { toast } from "react-toastify";
 
