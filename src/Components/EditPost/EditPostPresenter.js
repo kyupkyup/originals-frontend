@@ -6,6 +6,8 @@ import Input from "../Input";
 import { X } from "../Icons";
 import Button from "../Button/Button";
 import Textarea from "../Textarea";
+import "react-dropdown/style.css";
+
 const Container = styled.div`
   ${props => props.theme.whiteBox}
   width: 100%;
