@@ -24,7 +24,8 @@
     "react-toastify": "^5.5.0",
     "semantic-ui-react": "^0.88.2",
     "styled-components": "^5.0.0",
-    "styled-reset": "^4.1.0"
+    "styled-reset": "^4.1.0",
+    "sudo": "^1.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -49,7 +50,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "http://kyupkyup.github.io/originals-frontend",
+  "homepage": "http://originals.netlify.com/",
   "devDependencies": {
     "gh-pages": "^2.2.0"
   }
