@@ -50,7 +50,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://originals.netlify.com/#/",
+  "homepage": "https://originals.netlify.com/",
   "devDependencies": {
     "gh-pages": "^2.2.0"
   }
