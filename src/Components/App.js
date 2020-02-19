@@ -36,7 +36,7 @@ export default () => {
         <GlobalStyles />
         <Router>
           <>
-            {isLoggedIn ? <Header /> : null}
+            <Header />
             <Wrapper>
               <AppRouter isLoggedIn={isLoggedIn} />
             </Wrapper>

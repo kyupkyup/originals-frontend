@@ -55,7 +55,6 @@ export default () => {
         toast.error("이메일을 입력해주세요.");
       }
     } else if (action === "signUp") {
-      // TODO
       if (
         email.value !== "" &&
         userName.value !== "" &&

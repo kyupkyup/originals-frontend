@@ -4,8 +4,6 @@ import Input from "../../Components/Input";
 import Button from "../../Components/Button/Button";
 import Helmet from "react-helmet";
 
-// string literals are supported through IconName union type
-
 const Wrapper = styled.div`
   min-height: 80vh;
   display: flex;
@@ -43,11 +41,6 @@ const StateChanger = styled(Box)`
   text-align: center;
   padding: 20px 35px;
 `;
-
-// const Link = styled.span`
-//   color: ${props => props.theme.blueColor};
-//   cursor: pointer;
-// `;
 
 export default ({
   setAction,

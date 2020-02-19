@@ -79,19 +79,6 @@ const MeetingWrapper = styled.div`
     height:100%;
     background-color:${props => props.theme.grayColor1};
 `;
-// const Post = styled.div`
-//   height: 300px;
-//   width: 300px;
-//   margin: 20px;
-//   border: 1px solid black;
-// `;
-
-// const Meeting = styled.div`
-//   height: 300px;
-//   width: 300px;
-//   margin: 20px;
-//   border: 1px solid black;
-// `;
 
 export default () => {
   const { data: dataPost, loading: loadingPost } = useQuery(MAIN_POST);
