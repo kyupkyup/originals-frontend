@@ -11,7 +11,6 @@ import Theme from "../Styles/Theme";
 import { HashRouter as Router } from "react-router-dom";
 import styled from "styled-components";
 import AppRouter from "./Router";
-import Header from "../Components/Header";
 
 const QUERY = gql`
   {
@@ -35,12 +34,9 @@ export default () => {
       <>
         <GlobalStyles />
         <Router>
-          <>
-            <Header />
-            <Wrapper>
-              <AppRouter isLoggedIn={isLoggedIn} />
-            </Wrapper>
-          </>
+          <Wrapper>
+            <AppRouter isLoggedIn={isLoggedIn} />
+          </Wrapper>
         </Router>
         <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
       </>

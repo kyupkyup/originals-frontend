@@ -46,7 +46,7 @@ export default () => {
             }
             console.log(token);
           } catch {
-            toast.error("비밀번호가 틀렸습니다.");
+            toast.error("로그인 할 수 없습니다.");
           }
         } else {
           toast.error("비밀번호를 입력해주세요.");
