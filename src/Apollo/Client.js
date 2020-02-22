@@ -4,7 +4,7 @@ export default new ApolloClient({
   uri:
     process.env.NODE_ENV === "development"
       ? "http://localhost:4000"
-      : "https://clone-instagram-kyungyup.herokuapp.com",
+      : "https://originals-d7148fe147.herokuapp.com",
 
   clientState: {
     defaults,
