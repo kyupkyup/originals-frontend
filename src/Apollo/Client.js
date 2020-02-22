@@ -4,7 +4,7 @@ export default new ApolloClient({
   uri:
     process.env.NODE_ENV === "development"
       ? "http://localhost:4000"
-      : "https://originals-d7148fe147.herokuapp.com",
+      : "https://originals-backend.herokuapp.com",
 
   clientState: {
     defaults,
