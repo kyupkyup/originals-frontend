@@ -2,11 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import "react-tabs/style/react-tabs.css";
 // import TextareaAutoSize from "react-autosize-textarea";
-import FatText from "../FatText";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Bulletin from "../Bulletin";
 import BulletinLine from "../BulletinLine";
-import { HeartFull, ViewIcon } from "../Icons";
 
 const TabContainer = styled(Tabs)`
   width: 370px;

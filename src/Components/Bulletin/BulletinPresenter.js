@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import "react-tabs/style/react-tabs.css";
 import TextareaAutoSize from "react-autosize-textarea";
-// import TextareaAutoSize from "react-autosize-textarea";
 import FatText from "../FatText";
 import Avatar from "../Avatar";
 import { Link } from "react-router-dom";
