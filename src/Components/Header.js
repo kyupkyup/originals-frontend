@@ -43,7 +43,7 @@ const HeaderLink = styled(Link)`
 
 export default withRouter(() => {
   const { data, loading } = useQuery(ME);
-
+  console.log(data);
   return (
     <Header>
       <HeaderWrapper>
