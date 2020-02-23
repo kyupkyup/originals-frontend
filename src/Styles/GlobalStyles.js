@@ -12,8 +12,7 @@ export default createGlobalStyle`
         background-color:${props => props.theme.ligthGray5};
         color:${props => props.theme.blackColor};
         font-size:14pt;
-        font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
+        font-family: 'Open Sans',  'sans-serif';
     }
     a {
         color:${props => props.theme.blueColor};

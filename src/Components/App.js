@@ -1,15 +1,14 @@
 import React from "react";
 import { gql } from "apollo-boost";
-
+import { HashRouter as Router } from "react-router-dom";
+import styled from "styled-components";
 import { ThemeProvider } from "styled-components";
-import GlobalStyles from "../Styles/GlobalStyles";
 import { useQuery } from "react-apollo-hooks";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import GlobalStyles from "../Styles/GlobalStyles";
 
 import Theme from "../Styles/Theme";
-import { HashRouter as Router } from "react-router-dom";
-import styled from "styled-components";
 import AppRouter from "./Router";
 
 const QUERY = gql`
@@ -28,7 +27,6 @@ export default () => {
   const {
     data: { isLoggedIn }
   } = useQuery(QUERY);
-  console.log(isLoggedIn);
   return (
     <ThemeProvider theme={Theme}>
       <>
