@@ -75,7 +75,6 @@ export default ({
   onSubmit,
   deleteMeeting
 }) => {
-  console.log(title);
   if (meetingId === "write") {
     return (
       <AllContainer>

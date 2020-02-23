@@ -4,7 +4,7 @@ import { gql } from "apollo-boost";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 
-import { useQuery, useMutation } from "react-apollo-hooks";
+import { useQuery } from "react-apollo-hooks";
 import Loader from "../Components/Loader";
 import Helmet from "react-helmet";
 import EditPost from "../Components/EditPost";

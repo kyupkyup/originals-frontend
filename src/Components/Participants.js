@@ -51,8 +51,6 @@ const Classes = styled.span`
 `;
 
 const Participants = ({ meetingId }) => {
-  console.log(meetingId);
-
   const { data, loading } = useQuery(SEE_PARTICIPANTS_LIST, {
     variables: { meetingId }
   });

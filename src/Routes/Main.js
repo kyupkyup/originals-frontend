@@ -83,10 +83,6 @@ const MeetingWrapper = styled.div`
 export default () => {
   const { data: dataPost, loading: loadingPost } = useQuery(MAIN_POST);
   const { data: dataMeeting, loading: loadingMeeting } = useQuery(MAIN_MEETING);
-  console.log(dataPost);
-  console.log(loadingPost);
-  console.log(dataMeeting);
-  console.log(dataMeeting);
 
   return (
     <Wrapper>
