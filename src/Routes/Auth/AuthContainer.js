@@ -43,6 +43,7 @@ export default () => {
             } = await loginMutation();
             if (token !== "" && token !== undefined) {
               localLogInMutation({ variables: { token } });
+              toast.success("로그인 했습니다.");
             }
           } catch {
             toast.error("로그인 할 수 없습니다.");
