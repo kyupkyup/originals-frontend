@@ -49,6 +49,9 @@ const Main = styled.div`
   padding: 10px;
   margin: 0 10px;
   font-size: 9pt;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 `;
 const Files = styled.div`
   margin: 0 10px;
