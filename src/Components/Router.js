@@ -9,19 +9,21 @@ import Book from "../Routes/Book";
 import Meeting from "../Routes/Meeting";
 import Header from "../Components/Header";
 
-const LoggedInRoutes = () => (
-  <>
-    <Header />
-    <Switch>
-      <Route exact path="/" component={Main} />
-      <Route path="/Bulletin/:id" component={Bulletin} />
-      <Route path="/Book" component={Book} />
-      <Route path="/Meeting/:id" component={Meeting} />
-      <Route path="/Profile/:email" component={Profile} />
-      <Redirect from="*" to="/" />
-    </Switch>
-  </>
-);
+const LoggedInRoutes = () => {
+  return (
+    <>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={Main} />
+        <Route path="/Bulletin/:id" component={Bulletin} />
+        <Route path="/Book" component={Book} />
+        <Route path="/Meeting/:id" component={Meeting} />
+        <Route path="/Profile/:email" component={Profile} />
+        <Redirect from="*" to="/" />
+      </Switch>
+    </>
+  );
+};
 
 const LoggedOutRoutes = () => (
   <Switch>

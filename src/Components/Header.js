@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
 import { useQuery } from "react-apollo-hooks";
 import { ME } from "../SharedQueries";
+import { Ref } from "semantic-ui-react";
 
 const Header = styled.header`
   width: 100%;
@@ -43,6 +44,7 @@ const HeaderLink = styled(Link)`
 
 export default withRouter(() => {
   const { data, loading } = useQuery(ME);
+
   console.log(data);
   if (data && data.me) {
     return (

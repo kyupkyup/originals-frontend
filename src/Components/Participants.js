@@ -64,7 +64,7 @@ const Participants = ({ meetingId }) => {
           <Participant key={participant.id}>
             <Avatar size="sm" url={participant.user.avatar} className="" />
             <UserColumn>
-              <Link to={`/${participant.user.email}`}>
+              <Link to={`/Profile/${participant.user.email}`}>
                 <FatText text={participant.user.userName} />
               </Link>
               <Classes>

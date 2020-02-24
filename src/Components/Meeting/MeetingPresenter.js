@@ -137,7 +137,7 @@ export default ({
         {
           <User>
             <Avatar size="md" url={avatar} />
-            <Link to={`/${email}`}>
+            <Link to={`/Profile/${email}`}>
               <FatText text={userName} />
             </Link>
             <Classes>

@@ -137,7 +137,7 @@ export default ({
         <Header>
           <Avatar size="md" url={author.avatar} className="" />
           <UserColumn>
-            <Link to={`/${author.email}`}>
+            <Link to={`/Profile/${author.email}`}>
               <FatText text={author.userName} />
             </Link>
             <Classes>

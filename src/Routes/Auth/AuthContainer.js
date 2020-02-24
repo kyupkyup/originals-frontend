@@ -41,8 +41,9 @@ export default () => {
             const {
               data: { login: token }
             } = await loginMutation();
+
             if (token !== "" && token !== undefined) {
-              localLogInMutation({ variables: { token } });
+              await localLogInMutation({ variables: { token } });
               toast.success("로그인 했습니다.");
             }
           } catch {
@@ -72,7 +73,9 @@ export default () => {
             setTimeout(() => setAction("login"), 3000);
           }
         } catch (e) {
-          toast.error("계정을 생성할 수 없습니다. 다시 시도해주세요.");
+          toast.error(
+            "네트워크 문제로 계정을 생성할 수 없습니다. 다시 시도해주세요."
+          );
         }
       } else {
         toast.error("모든 칸을 다 채워주세요.");

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { gql } from "apollo-boost";
+
 import { HashRouter as Router } from "react-router-dom";
 import styled from "styled-components";
 import { ThemeProvider } from "styled-components";
