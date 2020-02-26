@@ -76,11 +76,18 @@ const UserName = styled(FatText)`
     padding: 10px;
   }
 `;
+const WholeButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const ButtonContainer = styled.div`
   width: 150px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  margin-bottom: 10px;
+
   @media (max-width: ${BREAK_POINT_MOBILE}px) {
     width: 100%;
     padding: 5px 50px;
@@ -91,6 +98,7 @@ const ButtonContainer = styled.div`
 `;
 const ProfileButton = styled(Button)`
   width: 100%;
+
   @media (max-width: ${BREAK_POINT_MOBILE}px) {
     width: 100%;
   }
@@ -229,18 +237,18 @@ export default ({
                 <UserName text={userName} />
 
                 {isSelf ? (
-                  <>
-                    <ButtonContainer>
-                      <ProfileButton onClick={logOut} text={"로그아웃"} />
-                    </ButtonContainer>
-
+                  <WholeButtonContainer>
                     <ButtonContainer>
                       <ProfileButton
                         onClick={() => editProfile("Edit")}
                         text={"계정 수정"}
                       />
                     </ButtonContainer>
-                  </>
+
+                    <ButtonContainer>
+                      <ProfileButton onClick={logOut} text={"로그아웃"} />
+                    </ButtonContainer>
+                  </WholeButtonContainer>
                 ) : null}
               </UsernameRow>
 
