@@ -8,7 +8,7 @@ import BulletinLine from "../BulletinLine";
 import { BREAK_POINT_MOBILE } from "../../utils/mediaQuery";
 
 const TabContainer = styled(Tabs)`
-  width: 370px;
+  min-width: 370px;
   height: 80vh;
   font-size: 10pt;
   @media (max-width: ${BREAK_POINT_MOBILE}px) {
