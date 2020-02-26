@@ -6,7 +6,13 @@ import FatText from "../FatText";
 import Avatar from "../Avatar";
 import { Link } from "react-router-dom";
 import { HeartFull, HeartEmpty, Comment as CommentIcon } from "../Icons";
-
+import { BREAK_POINT_MOBILE } from "../../utils/mediaQuery";
+import { X } from "../Icons";
+const AllContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
 const BulletinContainer2 = styled.div`
   ${props => props.theme.whiteBox}
   width: 650px;
@@ -16,8 +22,32 @@ const BulletinContainer2 = styled.div`
   a {
     color: inherit;
   }
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    width: 100%;
+    margin: 0;
+  }
+`;
+const XButtonContainer = styled.div`
+  display: none;
+
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    display: flex;
+    width: 100%;
+    text-align: right;
+    margin-bottom: 20px;
+    ${props => {
+      if (props.setAction === "Main") {
+        return "display: none";
+      }
+    }}
+  }
 `;
 
+const XButton = styled.button`
+  width: 40px;
+  border: 0;
+  background-color: white;
+`;
 const Header = styled.header`
   padding: 10px;
   display: flex;
@@ -129,10 +159,16 @@ export default ({
   createdAt,
   toggleLike,
   onKeyPress,
-  newComment
+  newComment,
+  setAction
 }) => {
   return (
-    <>
+    <AllContainer>
+      <XButtonContainer setAction={setAction}>
+        <XButton onClick={() => setAction("nothing")}>
+          <X />
+        </XButton>
+      </XButtonContainer>
       <BulletinContainer2>
         <Header>
           <Avatar size="md" url={author.avatar} className="" />
@@ -187,6 +223,6 @@ export default ({
           onKeyPress={onKeyPress}
         ></Textarea>
       </BulletinContainer2>
-    </>
+    </AllContainer>
   );
 };

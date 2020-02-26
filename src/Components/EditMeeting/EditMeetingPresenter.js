@@ -5,8 +5,18 @@ import CheckboxToggle from "../semi-component/toggle";
 import Button from "../Button/Button";
 import { X } from "../Icons";
 import Input from "../Input";
+import { BREAK_POINT_MOBILE } from "../../utils/mediaQuery";
+
 const AllContainer = styled.div`
   width: 700px;
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 10pt;
+  }
 `;
 
 const Container = styled.div`

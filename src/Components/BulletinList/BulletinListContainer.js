@@ -35,6 +35,7 @@ const BulletinListContainer = ({
       classifyNum={classifyNum}
       posts={posts}
       openBulletin={openBulletin}
+      setAction={setAction}
       action={action}
     />
   );

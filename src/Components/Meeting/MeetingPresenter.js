@@ -7,6 +7,7 @@ import DropdownButton from "../Button/DropdownButton";
 import Participants from "../Participants";
 import Button from "../Button/Button";
 import DisabledButton from "../Button/DisabledButton";
+import { BREAK_POINT_MOBILE } from "../../utils/mediaQuery";
 const MeetingContainer = styled.div`
   width: 800px;
   display: flex;
@@ -17,6 +18,15 @@ const MeetingContainer = styled.div`
   border: 3px solid ${props => props.theme.lightGray1};
   padding: 20px;
   margin-bottom: 20px;
+
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 10pt;
+  }
 `;
 const Header = styled.div`
   border-radius: 10px;
@@ -32,6 +42,9 @@ const Header = styled.div`
 const Title = styled.div`
   padding: 10px;
   width: 100%;
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    font-size: 10pt;
+  }
 `;
 const User = styled.div`
   padding: 10px;
@@ -60,6 +73,11 @@ const MeetingTime = styled.div`
   border: 1px solid ${props => props.theme.lightGray3};
   width: 100%;
   padding: 10px;
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    font-size: 9pt;
+    display: flex;
+    align-items: center;
+  }
 `;
 const MeetingPlace = styled.div`
   font-size: 10pt;
@@ -68,6 +86,9 @@ const MeetingPlace = styled.div`
   border: 1px solid ${props => props.theme.lightGray3};
   width: 100%;
   padding: 10px;
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    font-size: 9pt;
+  }
 `;
 const MeetingPrice = styled.div`
   font-size: 10pt;
@@ -78,6 +99,11 @@ const MeetingPrice = styled.div`
   border: 1px solid ${props => props.theme.lightGray3};
   width: 100%;
   padding: 10px;
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    font-size: 9pt;
+    display: flex;
+    flex-direction: row;
+  }
 `;
 const Deadline = styled.div`
   font-size: 10pt;
@@ -88,6 +114,9 @@ const Deadline = styled.div`
   border: 1px solid ${props => props.theme.lightGray3};
   width: 100%;
   padding: 10px;
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    font-size: 9pt;
+  }
 `;
 const MeetingHeadCounts = styled.div`
   font-size: 10pt;
@@ -98,6 +127,9 @@ const MeetingHeadCounts = styled.div`
   border: 1px solid ${props => props.theme.lightGray3};
   width: 100%;
   padding: 10px;
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    font-size: 9pt;
+  }
 `;
 const ButtonContainer = styled.div`
   width: 100%;
@@ -105,7 +137,15 @@ const ButtonContainer = styled.div`
 `;
 const Text = styled(FatText)`
   font-size: 13pt;
-  margin: 0 20px;
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    font-size: 9pt;
+    font-weight: 400;
+    margin: 0 2px;
+  }
+`;
+const Con = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export default ({
@@ -153,27 +193,31 @@ export default ({
       <MainContainer>
         <MeetingTime>
           <Text text={" 모임 시간 :   "} />
-          {meetingTime}
+          <Text text={meetingTime} />
         </MeetingTime>
 
         <MeetingPlace>
           <Text text={" 모임 장소 :   "} />
-          {meetingPlace}
+          <Text text={meetingPlace} />
         </MeetingPlace>
 
         <MeetingPrice>
-          <Text text={" 모임 가격 :   "} />
-          {meetingPrice}
+          <Con>
+            <Text text={" 모임 가격 :   "} />
+          </Con>
+          <Con>
+            <Text text={meetingPrice} />
+          </Con>
         </MeetingPrice>
 
         <Deadline>
           <Text text={" 마감 기간 :   "} />
-          {deadline}
+          <Text text={deadline} />
         </Deadline>
 
         <MeetingHeadCounts>
           <Text text={" 제한 인원 :   "} />
-          {meetingHeadCounts}
+          <Text text={meetingHeadCounts} />
         </MeetingHeadCounts>
       </MainContainer>
       <DropdownButton

@@ -7,6 +7,7 @@ import { X } from "../Icons";
 import Button from "../Button/Button";
 import Textarea from "../Textarea";
 import "react-dropdown/style.css";
+import { BREAK_POINT_MOBILE } from "../../utils/mediaQuery";
 
 const Container = styled.div`
   ${props => props.theme.whiteBox}
@@ -14,6 +15,15 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 10pt;
+    padding: 3px;
+  }
 `;
 const XButtonContainer = styled.div`
   display: flex;
@@ -31,6 +41,11 @@ const XButton = styled.button`
 const TitleContainer = styled.div`
   width: 100%;
   padding: 10px;
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    margin-top: 10px;
+    width: 100%;
+    padding: 0;
+  }
 `;
 const Title = styled(Input)`
   width: 100%;
@@ -46,9 +61,17 @@ const SpinnerContainer = styled.div`
   &: {
     margin-left: 10px;
   }
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    width: 300px;
+    font-size: 10pt;
+    margin: 0;
+  }
 `;
 const DropdownM = styled(Dropdown)`
   width: 200px;
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    width: 200px;
+  }
 `;
 const CheckboxToggleM = styled(CheckboxToggle)`
   margin-left: 10px;

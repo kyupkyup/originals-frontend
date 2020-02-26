@@ -27,7 +27,8 @@ const BulletinContainer = ({
   views,
   likes,
   comments,
-  createdAt
+  createdAt,
+  setAction
 }) => {
   const [toggleLikeMutation] = useMutation(TOGGLE_LIKE, {
     variables: { postId: id }
@@ -99,6 +100,7 @@ const BulletinContainer = ({
         toggleLike={toggleLike}
         onKeyPress={onKeyPress}
         newComment={newComment}
+        setAction={setAction}
       />
     </>
   );

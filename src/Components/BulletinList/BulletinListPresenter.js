@@ -5,17 +5,26 @@ import "react-tabs/style/react-tabs.css";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Bulletin from "../Bulletin";
 import BulletinLine from "../BulletinLine";
+import { BREAK_POINT_MOBILE } from "../../utils/mediaQuery";
 
 const TabContainer = styled(Tabs)`
   width: 370px;
   height: 80vh;
   font-size: 10pt;
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    width: 100%;
+    ${props => {
+      if (props.action !== "nothing") {
+        return "display:none";
+      }
+    }}
 `;
 
-export default ({ posts, action, openBulletin }) => {
+export default ({ posts, action, openBulletin, setAction }) => {
+  console.log(action);
   return (
     <>
-      <TabContainer>
+      <TabContainer action={action}>
         <TabList>
           <Tab>전체</Tab>
           <Tab>공지사항</Tab>
@@ -51,7 +60,9 @@ export default ({ posts, action, openBulletin }) => {
           )}
         </TabPanel>
       </TabContainer>
-      {action !== "nothing" ? <Bulletin postId={action} /> : null}
+      {action !== "nothing" ? (
+        <Bulletin postId={action} setAction={setAction} />
+      ) : null}
     </>
   );
 };

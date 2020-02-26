@@ -5,6 +5,7 @@ import { useQuery } from "react-apollo-hooks";
 import Post from "../Components/Bulletin";
 import Meeting from "../Components/Meeting";
 import Loader from "../Components/Loader";
+import { BREAK_POINT_MOBILE } from "../utils/mediaQuery";
 
 const MAIN_POST = gql`
   {
@@ -55,6 +56,10 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    width: 100%;
+    font-size: 10pt;
+  }
 `;
 
 const Box = styled.div`
@@ -66,18 +71,31 @@ const Box = styled.div`
   justify-content: center;
   flex-direction: row;
   padding: 20px;
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    width: 100%;
+    font-size: 10pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const PostWrapper = styled.div`
     width: 650px:
     height:100%;
     background-color:${props => props.theme.grayColor1};
+    @media (max-width: ${BREAK_POINT_MOBILE}px) {
+      width:100%;
+    }
 `;
 
 const MeetingWrapper = styled.div`
     width:800px:
     height:100%;
     background-color:${props => props.theme.grayColor1};
+    @media (max-width: ${BREAK_POINT_MOBILE}px) {
+      width:100%;
+    }
 `;
 
 export default () => {
@@ -113,7 +131,7 @@ export default () => {
         <PostWrapper>
           {loadingPost && <Loader />}
           {!loadingPost && dataPost && dataPost.mainPost && (
-            <Post postId={dataPost.mainPost.id} />
+            <Post postId={dataPost.mainPost.id} setAction={"Main"} />
           )}
         </PostWrapper>
       </Box>

@@ -5,11 +5,11 @@ import { SEE_POST } from "./BulletinQueries";
 import Loader from "../Loader";
 import BulletinContainer from "./BulletinContainer";
 
-const BulletinBridge = postId => {
+const BulletinBridge = ({ postId, setAction }) => {
   const { data, loading } = useQuery(SEE_POST, {
-    variables: { id: postId.postId }
+    variables: { id: postId }
   });
-
+  console.log(postId);
   if (loading) {
     return <Loader />;
   } else if (!loading && data && data.seePost) {
@@ -53,6 +53,7 @@ const BulletinBridge = postId => {
         likes={likes}
         comments={comments}
         createdAt={createdAt}
+        setAction={setAction}
       />
     );
   }

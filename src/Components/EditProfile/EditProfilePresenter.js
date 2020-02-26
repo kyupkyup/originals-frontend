@@ -5,6 +5,7 @@ import FatText from "../FatText";
 import Helmet from "react-helmet";
 import Input from "../Input";
 import Button from "../Button/Button";
+import { BREAK_POINT_MOBILE } from "../../utils/mediaQuery";
 
 const Wrapper = styled.div`
   min-height: 80px;
@@ -12,6 +13,14 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 10pt;
+  }
 `;
 
 const Header = styled.div``;

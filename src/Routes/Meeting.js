@@ -9,6 +9,7 @@ import Loader from "../Components/Loader";
 import Meeting from "../Components/Meeting";
 import Button from "../Components/Button/Button";
 import EditMeeting from "../Components/EditMeeting";
+import { BREAK_POINT_MOBILE } from "../utils/mediaQuery";
 const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
@@ -16,7 +17,9 @@ const ButtonContainer = styled.div`
   align-items: center;
   justify-content: flex-end;
   padding-right: 100px;
-  width: 100%;
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    padding-right: 0px;
+  }
 `;
 const SHOW_MEETING_LIST = gql`
   {
@@ -53,10 +56,15 @@ const SHOW_MEETING_LIST = gql`
   }
 `;
 const Wrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 80vh;
+
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    padding: 5px;
+  }
 `;
 const ButtonDownContainer = styled.span`
   width: 150px;

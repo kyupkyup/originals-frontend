@@ -4,6 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import { useQuery } from "react-apollo-hooks";
 import { ME } from "../SharedQueries";
 import { Ref } from "semantic-ui-react";
+import { BREAK_POINT_MOBILE } from "../utils/mediaQuery";
 
 const Header = styled.header`
   width: 100%;
@@ -16,6 +17,11 @@ const Header = styled.header`
   justify-content: center;
   padding: 25px 0;
   z-index: 2;
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    padding: 15px 5px;
+    font-size: 10pt;
+    margin-bottom: 10px;
+  }
 `;
 
 const HeaderWrapper = styled.div`

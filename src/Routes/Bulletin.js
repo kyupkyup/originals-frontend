@@ -9,6 +9,8 @@ import Loader from "../Components/Loader";
 import Helmet from "react-helmet";
 import EditPost from "../Components/EditPost";
 import Button from "../Components/Button/Button";
+import { BREAK_POINT_MOBILE } from "../utils/mediaQuery";
+
 const SEE_FULL_BULLETIN_LIST = gql`
   {
     seeFullBulletinList {
@@ -32,8 +34,12 @@ const SEE_FULL_BULLETIN_LIST = gql`
 `;
 
 const BulletinContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    padding: 3px 10px;
+  }
 `;
 const BulletinListContainer = styled.div`
   display: flex;
