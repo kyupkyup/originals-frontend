@@ -137,6 +137,8 @@ const Counts = styled.ul`
   margin: 15px 0px;
   @media (max-width: ${BREAK_POINT_MOBILE}px) {
     margin: 5px;
+    width: 100%;
+    text-align: center;
   }
 `;
 
