@@ -118,6 +118,7 @@ const ProfileContainer = styled.div`
   }
 `;
 const ProfileTextContainer = styled.div`
+  margin-bottom: 20px;
   @media (max-width: ${BREAK_POINT_MOBILE}px) {
     width: 100%;
     margin-bottom: 5px;
@@ -176,6 +177,9 @@ const Tab = styled.span`
   cursor: pointer;
   width: 250px;
   text-align: center;
+  &:hover {
+    font-weight: 700;
+  }
   @media (max-width: ${BREAK_POINT_MOBILE}px) {
     width: 33%;
   }

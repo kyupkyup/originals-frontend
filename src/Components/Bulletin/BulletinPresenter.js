@@ -82,6 +82,7 @@ const Main = styled.div`
   word-break: break-all;
   word-wrap: break-word;
   white-space: pre-wrap;
+  line-height: 150%;
 `;
 const Files = styled.div`
   margin: 0 10px;
@@ -106,7 +107,11 @@ const MetaText = styled(FatText)`
   font-size: 13pt;
 `;
 
-const Button = styled.span``;
+const Button = styled.span`
+  &:hover {
+    opacity: 0.5;
+  }
+`;
 
 const TimeStamp = styled.span`
   margin-left: 10px;

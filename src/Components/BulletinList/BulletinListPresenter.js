@@ -5,6 +5,7 @@ import "react-tabs/style/react-tabs.css";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Bulletin from "../Bulletin";
 import BulletinLine from "../BulletinLine";
+import EmptyBulletin from "../Bulletin/EmptyBulletin";
 import { BREAK_POINT_MOBILE } from "../../utils/mediaQuery";
 
 const TabContainer = styled(Tabs)`
@@ -62,7 +63,9 @@ export default ({ posts, action, openBulletin, setAction }) => {
       </TabContainer>
       {action !== "nothing" ? (
         <Bulletin postId={action} setAction={setAction} />
-      ) : null}
+      ) : (
+        <EmptyBulletin />
+      )}
     </>
   );
 };
