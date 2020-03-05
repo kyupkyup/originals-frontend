@@ -1,80 +1,30 @@
-# originals-backend
-### backend of originals webApp
+# originals-frontend
+### frontend of originals webApp
 
-##### Originals’ WebApp Development Design
+##### Originals’ WebApp Development PatchNote
 
 * * *
 
 #### Features
-1.	Main Page   
-    1. Setting Articles shown on main page   
-    2. The nearest date of meeting or the most important meeting can be set   
-2.	meeting   
-    1.	gather in meeting   
-        1.	writing meeting   
-            1.	title   
-            2.	time   
-            3.	place   
-            4.	price   
-            5.	etc   
-            6.	deadline   
-                A.	if deadline is over. Participating is impossible.    
-            7.	Organizer can close the booking, then participants cannot cancel or reserve the meeting   
-        2.	update   
-        3.	delete   
-    2.	participating in meeting   
-        1.	showing list who are in meeting   
-        2.	participating is impossible if meeting is overbooked.   
-        3.	Cancelling is Free.    
-        4.	If limit time is over or Organizer close the booking, additional participant is impossible   
-3.	bulletin   
-    1.	writing article   
-        1.	title   
-        2.	content   
-        3.	photos   
-    2.	update   
-    3.	delete   
-    4.	setting announcement   
-        1.	setting announcement on top of all articles   
-        2.	cancel the announcement   
-    5.	classifying articles with some standards   
-        1.	standards   
-            1.	announcement   
-            2.	free articles   
-            3.	Introduction   
-            4.	Feedback   
-            5.	Anonymous articles   
-        2.	By standards bulletin list can be sorted.   
-    6.	No paging   
-4.	Like   
-    1.	Setting like on posts, comments   
-    2.	Like Count can be shown on post and comment   
-    3.	People can be shown who have clicked the like on post   
-5.	Comment    
-    1.	Leaving a comment on post   
-    2.	Comment on comment feature is limited   
-6.	Views   
-    1.	Views are shown on the post   
-    2.	Views are not overlapped specified by user’s ID   
-7.	Book   
-    1.	All the books can be listed.   
-    2.	Search features must be implemented   
-        1.	Title   
-        2.	Publisher   
-        3.	Author   
-        4.	content   
-    3.	Books are listed in two ways   
-        1.	Grid   
-            1.	Grid shows the photo of books    
-        2.	List   
-            1.	List shows the title of books   
-    4.	Book’s detail page must show the reservation status on calendar
-8.	Reservation   
-    1.	In book page the reservation status is shown.   
-    2.	User is shown in calendar with reservation start date and end date.    
-    3.	If there is no reservation, user can reserve the book for 2 weeks.   
-        1.	2 weeks’ start date and end date is automatically set.   
-    4.	If there is reservation, user can reserve the book after the end date of just before reservation.   
-    5.	Reservation can be extended if there is no reservation after the end date.   
-9.	Profile   
-    1.	데이터베이스 내 데이터들 showing   
+1.	프로필 글자 간격 너무 좁음
+2.	게시글 글 간격 너무 좁음
+3.	게시판 초기 글 맨 윗글로 하면 이쁠 듯
+4.	좋아요 -> 마우스 오버 반응 넣기
+5.	모임 메인에서 작동X
+6.	모임 장소 지도 연동 
+7.	모임 시간 캘린더 적용
+8.	제한 인원 타입체크 추가	
+9.	조회 기능 추가
+10.	댓글 입력 시 자동으로 새로고침 하도록
+11.	프로필 사진 수정 기능
+12.	프로필 댓글 게시판, 참가한 모임 마우스 오버 이펙트
+13.	하트 클릭 시 다른 글의 하트가 이상해짐
+14.	글쓰기 제목 없으면 저장은 되는데 수정하기 했을 때 오류
+15.	계정 수정에서 생일 수정 불가
+16.	프로필 하단에 작성한 글은 보이는데 작성한 글 링크로 연결이 안됨
+17.	글쓸때 공지사항 셀렉트박스랑 체크박스 두개 있을 필요 없을 것 같음
+18.	참석 취소 기능 구현
+19.	공지사항 구현
+20.	공지사항으로 글 등록해놓고 가입인사로 수정하려니깐 적용이 안됨
+21.	제한인원 14명인데 15명 참가함
+22.	X버튼 대신 뒤로가기
