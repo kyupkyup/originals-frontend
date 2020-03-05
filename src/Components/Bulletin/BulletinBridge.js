@@ -6,10 +6,9 @@ import Loader from "../Loader";
 import BulletinContainer from "./BulletinContainer";
 
 const BulletinBridge = ({ postId, setAction }) => {
-  const { data, loading } = useQuery(SEE_POST, {
+  const { data, loading, refetch } = useQuery(SEE_POST, {
     variables: { id: postId }
   });
-  console.log(postId);
   if (loading) {
     return <Loader />;
   } else if (!loading && data && data.seePost) {
@@ -49,6 +48,7 @@ const BulletinBridge = ({ postId, setAction }) => {
         viewsCount={viewsCount}
         likesCount={likesCount}
         commentsCount={commentsCount}
+        refetch={refetch}
         views={views}
         likes={likes}
         comments={comments}

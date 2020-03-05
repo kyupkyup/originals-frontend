@@ -28,7 +28,6 @@ const ContainerDivider = styled.div`
 
 const Title = styled(FatText)`
   padding: 10px;
-  cursor: pointer;
 `;
 
 const MeetingLine = ({ participant }) => {

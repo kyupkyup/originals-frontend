@@ -19,21 +19,24 @@ const Input = ({
   onChange,
   type = "text",
   disabled = false
-}) => (
-  <InputType
-    className={className}
-    placeholder={placeholder}
-    value={value}
-    onChange={onChange}
-    type={type}
-    disabled={disabled}
-  />
-);
+}) => {
+  return (
+    <InputType
+      className={className}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      type={type}
+      disabled={disabled}
+    />
+  );
+};
+
 Input.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
   type: PropTypes.string,
   disabled: PropTypes.bool
 };

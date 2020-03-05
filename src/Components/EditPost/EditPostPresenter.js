@@ -30,6 +30,7 @@ const XButtonContainer = styled.div`
   width: 100%;
   text-align: right;
   margin-bottom: 20px;
+  cursor: pointer;
 `;
 
 const XButton = styled.button`

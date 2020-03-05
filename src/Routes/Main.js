@@ -33,6 +33,7 @@ const MAIN_MEETING = gql`
       meetingPrice
       deadline
       meetingHeadCounts
+      coords
       participants {
         id
         user {
@@ -110,7 +111,7 @@ export default () => {
 
           {!loadingMeeting && dataMeeting && dataMeeting.mainMeeting && (
             <Meeting
-              id
+              id={dataMeeting.mainMeeting.id}
               title={dataMeeting.mainMeeting.title}
               main={dataMeeting.mainMeeting.main}
               user={dataMeeting.mainMeeting.user}
@@ -119,6 +120,7 @@ export default () => {
               meetingPrice={dataMeeting.mainMeeting.meetingPrice}
               deadline={dataMeeting.mainMeeting.deadline}
               meetingHeadCounts={dataMeeting.mainMeeting.meetingHeadCounts}
+              coords={dataMeeting.mainMeeting.coords}
               participants={dataMeeting.mainMeeting.participants}
               isParticipated={dataMeeting.mainMeeting.isParticipated}
               participantsCount={dataMeeting.mainMeeting.participantsCount}

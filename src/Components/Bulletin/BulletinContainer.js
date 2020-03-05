@@ -28,14 +28,13 @@ const BulletinContainer = ({
   likes,
   comments,
   createdAt,
+  refetch,
   setAction
 }) => {
   const [toggleLikeMutation] = useMutation(TOGGLE_LIKE, {
     variables: { postId: id }
   });
-  const [togglePostMutation] = useMutation(TOGGLE_POST, {
-    variables: { postId: id }
-  });
+
   const newComment = useInput("");
 
   const [isLikedS, setIsLiked] = useState(isLiked);
@@ -76,6 +75,7 @@ const BulletinContainer = ({
         toast.error("댓글을 입력할 수 없습니다.");
       }
       newComment.setValue("");
+      await refetch();
     }
   };
   return (

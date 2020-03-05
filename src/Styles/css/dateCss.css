@@ -1,0 +1,16 @@
+.dateContainer {
+  width: 100% !important;
+  background-color: aqua;
+}
+
+.dateInput {
+  width: 100%;
+  min-width: 648px;
+  border: 0;
+  border: 1px solid #bfccd6;
+  border-radius: 4px;
+  background-color: #f5f8fa;
+  height: 35px;
+  font-size: 12px;
+  padding: 0px 15px;
+}

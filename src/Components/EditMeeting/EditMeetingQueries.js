@@ -28,6 +28,7 @@ export const SEE_MEETING = gql`
           email
         }
       }
+
       isParticipated
       participantsCount
       createdAt
@@ -44,6 +45,7 @@ export const EDIT_MEETING = gql`
     $meetingPlace: String!
     $meetingPrice: String!
     $deadline: String!
+    $coords: String!
     $meetingHeadCounts: Int!
     $action: ACTIONS!
   ) {
@@ -55,6 +57,7 @@ export const EDIT_MEETING = gql`
       meetingPlace: $meetingPlace
       meetingPrice: $meetingPrice
       deadline: $deadline
+      coords: $coords
       meetingHeadCounts: $meetingHeadCounts
       action: $action
     ) {
@@ -71,6 +74,7 @@ export const WRITE_MEETING = gql`
     $meetingPlace: String!
     $meetingPrice: String!
     $deadline: String!
+    $coords: String
     $meetingHeadCounts: Int!
   ) {
     uploadMeeting(
@@ -80,6 +84,7 @@ export const WRITE_MEETING = gql`
       meetingPlace: $meetingPlace
       meetingPrice: $meetingPrice
       deadline: $deadline
+      coords: $coords
       meetingHeadCounts: $meetingHeadCounts
     ) {
       id

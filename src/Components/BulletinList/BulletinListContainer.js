@@ -11,30 +11,13 @@ const BulletinListContainer = ({
 }) => {
   const [action, setAction] = useState("nothing");
 
-  const openBulletin = async post => {
-    if (action === "nothing") {
-      await setAction(post.id);
-      if (userId === post.author.id) {
-        await setEditId(post.id);
-      } else {
-        await setEditId("");
-      }
-    } else if (action !== "nothing") {
-      await setAction(post.id);
-      if (userId === post.author.id) {
-        await setEditId(post.id);
-      } else {
-        await setEditId("");
-      }
-    }
-  };
-
   return (
     <BulletinListPresenter
       id={id}
       classifyNum={classifyNum}
       posts={posts}
-      openBulletin={openBulletin}
+      setEditId={setEditId}
+      userId={userId}
       setAction={setAction}
       action={action}
     />
@@ -58,7 +41,8 @@ BulletinListContainer.propTypes = {
       classifyNum: PropTypes.number.isRequired,
       createdAt: PropTypes.string.isRequired
     })
-  ).isRequired
+  ).isRequired,
+  setEditId: PropTypes.func
   // id: PropTypes.string.isRequired,
   // title: PropTypes.string.isRequired,
   // likesCount: PropTypes.number,

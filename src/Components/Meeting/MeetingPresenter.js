@@ -1,3 +1,5 @@
+/*global kakao*/
+
 import React from "react";
 import styled from "styled-components";
 import FatText from "../FatText";
@@ -8,6 +10,7 @@ import Participants from "../Participants";
 import Button from "../Button/Button";
 import DisabledButton from "../Button/DisabledButton";
 import { BREAK_POINT_MOBILE } from "../../utils/mediaQuery";
+import { Map } from "../Icons";
 const MeetingContainer = styled.div`
   width: 800px;
   display: flex;
@@ -73,6 +76,9 @@ const MeetingTime = styled.div`
   border: 1px solid ${props => props.theme.lightGray3};
   width: 100%;
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
+
   @media (max-width: ${BREAK_POINT_MOBILE}px) {
     font-size: 9pt;
     display: flex;
@@ -80,35 +86,57 @@ const MeetingTime = styled.div`
   }
 `;
 const MeetingPlace = styled.div`
-  font-size: 10pt;
   margin-bottom: 10px;
   border-radius: 10px;
   border: 1px solid ${props => props.theme.lightGray3};
   width: 100%;
   padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
   @media (max-width: ${BREAK_POINT_MOBILE}px) {
     font-size: 9pt;
   }
 `;
 const MeetingPrice = styled.div`
   font-size: 10pt;
-
   margin-bottom: 10px;
-
   border-radius: 10px;
   border: 1px solid ${props => props.theme.lightGray3};
   width: 100%;
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
+
   @media (max-width: ${BREAK_POINT_MOBILE}px) {
     font-size: 9pt;
     display: flex;
     flex-direction: row;
   }
 `;
+const MapButton = styled.div`
+  width: 5%;
+  font-size: 9pt;
+  margin-left: 10px;
+  opacity: 0.9;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: ;
+`;
+
+const MapContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width:100%:
+  padding-bottom:20px;
+`;
 const Deadline = styled.div`
   font-size: 10pt;
-
+  display: flex;
   margin-bottom: 10px;
+  justify-content: space-between;
 
   border-radius: 10px;
   border: 1px solid ${props => props.theme.lightGray3};
@@ -124,6 +152,8 @@ const MeetingHeadCounts = styled.div`
   margin-bottom: 10px;
 
   border-radius: 10px;
+  justify-content: space-between;
+  display: flex;
   border: 1px solid ${props => props.theme.lightGray3};
   width: 100%;
   padding: 10px;
@@ -147,6 +177,10 @@ const Con = styled.div`
   display: flex;
   align-items: center;
 `;
+const Span = styled.span`
+  width: 5%;
+  margin-left: 10px;
+`;
 
 export default ({
   meetingId,
@@ -161,13 +195,58 @@ export default ({
   participants,
   isParticipated,
   participantsCount,
+  translate,
   createdAt,
+  coordsParam,
+  mapClick,
+  mapAction,
   dropdown,
   clickDrop,
   participate,
   userId,
   setEditing
 }) => {
+  if (mapAction === true) {
+    const script = document.createElement("script");
+    script.async = true;
+    script.src =
+      "//dapi.kakao.com/v2/maps/sdk.js?appkey=f2fb500392c56034d629914c8b7465c7";
+    document.head.appendChild(script);
+    var coords = translate(coordsParam);
+
+    script.onload = () => {
+      kakao.maps.load(() => {
+        let el = document.getElementById("map");
+        let map = new kakao.maps.Map(el, {
+          center: new kakao.maps.LatLng(
+            Number(coords.split(",")[0]),
+            Number(coords.split(",")[1])
+          ),
+          draggable: true,
+          scrollWheel: true
+        });
+        let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+        var marker = new kakao.maps.Marker({
+          map: map,
+          position: new kakao.maps.LatLng(
+            Number(coords.split(",")[0]),
+            Number(coords.split(",")[1])
+          )
+        });
+
+        // 마커에 클릭이벤트를 등록합니다
+        kakao.maps.event.addListener(marker, "click", function() {
+          // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+          infowindow.setContent(
+            '<div style="padding:5px;font-size:12px;">' +
+              meetingPlace +
+              "</div>"
+          );
+          infowindow.open(map, marker);
+        });
+      });
+    };
+  }
   return (
     <MeetingContainer>
       <Header>
@@ -194,13 +273,18 @@ export default ({
         <MeetingTime>
           <Text text={" 모임 시간 :   "} />
           <Text text={meetingTime} />
+          <Span />
         </MeetingTime>
 
         <MeetingPlace>
           <Text text={" 모임 장소 :   "} />
           <Text text={meetingPlace} />
+          <MapButton onClick={() => mapClick()}>
+            <Map />
+          </MapButton>
         </MeetingPlace>
 
+        <MapContainer>{mapAction ? <div id="map"></div> : null}</MapContainer>
         <MeetingPrice>
           <Con>
             <Text text={" 모임 가격 :   "} />
@@ -208,16 +292,19 @@ export default ({
           <Con>
             <Text text={meetingPrice} />
           </Con>
+          <Span />
         </MeetingPrice>
 
         <Deadline>
           <Text text={" 마감 기간 :   "} />
           <Text text={deadline} />
+          <Span />
         </Deadline>
 
         <MeetingHeadCounts>
           <Text text={" 제한 인원 :   "} />
           <Text text={meetingHeadCounts} />
+          <Span />
         </MeetingHeadCounts>
       </MainContainer>
       <DropdownButton

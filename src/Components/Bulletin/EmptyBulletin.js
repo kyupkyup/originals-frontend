@@ -13,7 +13,6 @@ const BulletinContainer2 = styled.div`
   width: 650px;
   height: 80vh;
   display: flex;
-
   align-items: center;
   justify-content: center;
   overflow-y: auto;

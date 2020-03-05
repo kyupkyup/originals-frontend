@@ -15,6 +15,7 @@ const MeetingContainer = ({
   meetingPrice,
   deadline,
   meetingHeadCounts,
+  coords,
   participants,
   isParticipated,
   participantsCount,
@@ -24,7 +25,21 @@ const MeetingContainer = ({
   setEditing
 }) => {
   const [dropdown, setDropdown] = useState(false);
+  const [mapAction, setMapAction] = useState(false);
+  const translate = coords => {
+    coords = coords.replace(/\s/g, "");
+    coords = coords.replace(/\)/g, "");
+    coords = coords.replace(/\(/g, "");
+    return coords;
+  };
 
+  const mapClick = () => {
+    if (!mapAction) {
+      setMapAction(true);
+    } else if (mapAction) {
+      setMapAction(false);
+    }
+  };
   const clickDrop = () => {
     if (dropdown === true) {
       setDropdown(false);
@@ -62,9 +77,13 @@ const MeetingContainer = ({
       participants={participants}
       isParticipated={isParticipated}
       participantsCount={participantsCount}
+      coordsParam={coords}
+      translate={translate}
       createdAt={createdAt}
       dropdown={dropdown}
       clickDrop={clickDrop}
+      mapClick={mapClick}
+      mapAction={mapAction}
       participate={participate}
       userId={userId}
       setEditId={setEditId}
@@ -90,6 +109,7 @@ MeetingContainer.propTypes = {
   meetingPrice: PropTypes.string.isRequired,
   deadline: PropTypes.string.isRequired,
   meetingHeadCounts: PropTypes.number.isRequired,
+  coords: PropTypes.string,
   participants: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,

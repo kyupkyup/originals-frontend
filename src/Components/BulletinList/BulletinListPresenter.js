@@ -21,8 +21,7 @@ const TabContainer = styled(Tabs)`
     }}
 `;
 
-export default ({ posts, action, openBulletin, setAction }) => {
-  console.log(action);
+export default ({ posts, action, setAction, userId, setEditId }) => {
   return (
     <>
       <TabContainer action={action}>
@@ -35,28 +34,52 @@ export default ({ posts, action, openBulletin, setAction }) => {
 
         <TabPanel>
           {posts.map(post => (
-            <BulletinLine post={post} openBulletin={openBulletin} />
+            <BulletinLine
+              post={post}
+              setEditId={setEditId}
+              userId={userId}
+              action={action}
+              setAction={setAction}
+            />
           ))}
         </TabPanel>
 
         <TabPanel>
           {posts.map(post =>
             post.classifyNum === 1 ? (
-              <BulletinLine post={post} openBulletin={openBulletin} />
+              <BulletinLine
+                post={post}
+                setEditId={setEditId}
+                userId={userId}
+                action={action}
+                setAction={setAction}
+              />
             ) : null
           )}
         </TabPanel>
         <TabPanel>
           {posts.map(post =>
             post.classifyNum === 2 ? (
-              <BulletinLine post={post} openBulletin={openBulletin} />
+              <BulletinLine
+                post={post}
+                setEditId={setEditId}
+                userId={userId}
+                action={action}
+                setAction={setAction}
+              />
             ) : null
           )}
         </TabPanel>
         <TabPanel>
           {posts.map(post =>
             post.classifyNum === 3 ? (
-              <BulletinLine post={post} openBulletin={openBulletin} />
+              <BulletinLine
+                post={post}
+                setEditId={setEditId}
+                userId={userId}
+                action={action}
+                setAction={setAction}
+              />
             ) : null
           )}
         </TabPanel>

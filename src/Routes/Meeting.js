@@ -38,6 +38,7 @@ const SHOW_MEETING_LIST = gql`
       meetingPlace
       meetingPrice
       deadline
+      coords
       meetingHeadCounts
       participants {
         id
@@ -114,6 +115,7 @@ export default withRouter(
               meetingPlace={meeting.meetingPlace}
               meetingPrice={meeting.meetingPrice}
               deadline={meeting.deadline}
+              coords={meeting.coords}
               meetingHeadCounts={meeting.meetingHeadCounts}
               participants={meeting.participants}
               isParticipated={meeting.isParticipated}

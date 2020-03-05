@@ -51,6 +51,10 @@ const HeaderColumn = styled.div`
   }
 `;
 const AvatarM = styled(Avatar)`
+  &:hover {
+    opacity: 0.3;
+  }
+  cursor: pointer;
   @media (max-width: ${BREAK_POINT_MOBILE}px) {
     ${props => (props.size = "md")}
     margin-bottom: 10px;
@@ -309,7 +313,9 @@ export default ({
             </TabContainer>
             <ContentContainer>
               {action === "bulletin"
-                ? posts.map(post => <BulletinLine key={post.id} post={post} />)
+                ? posts.map(post => (
+                    <BulletinLine key={post.id} post={post} action={"main"} />
+                  ))
                 : action === "comment"
                 ? comments.map(comment => (
                     <CommentLine key={comment.id} comment={comment} />

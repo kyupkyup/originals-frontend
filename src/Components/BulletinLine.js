@@ -3,6 +3,15 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import FatText from "./FatText";
 import { ViewIcon, HeartFull } from "./Icons";
+import { useMutation } from "react-apollo-hooks";
+import { gql } from "apollo-boost";
+
+const VIEW = gql`
+  mutation togglePost($postId: String!) {
+    togglePost(postId: $postId)
+  }
+`;
+
 const Container = styled.div`
   width: 100%;
   display: flex;
@@ -29,6 +38,11 @@ const ContainerDivider = styled.div`
 const Title = styled(FatText)`
   padding: 10px;
   cursor: pointer;
+  ${props => {
+    if (props.action === "main") {
+      return "cursor:none;";
+    }
+  }}
 `;
 
 const ViewContainer = styled.div`
@@ -53,21 +67,46 @@ const Like = styled(FatText)`
   padding: 5px 0;
 `;
 
-const BulletinLine = ({ post, openBulletin }) => {
+const BulletinLine = ({ post, userId, setEditId, action, setAction }) => {
+  const [togglePostMutation] = useMutation(VIEW, {
+    variables: { postId: post.id }
+  });
+  const openBulletin = async () => {
+    if (action === "nothing") {
+      await setAction(post.id);
+      if (userId === post.author.id) {
+        await setEditId(post.id);
+      } else {
+        await setEditId("");
+      }
+    } else if (action !== "nothing") {
+      await setAction(post.id);
+      if (userId === post.author.id) {
+        await setEditId(post.id);
+      } else {
+        await setEditId("");
+      }
+    }
+    await togglePostMutation();
+  };
   return (
     <Container>
       <ContainerDivider>
-        <Title text={post.title} onClick={() => openBulletin(post)} />
+        {action === "main" ? (
+          <Title text={post.title} />
+        ) : (
+          <Title text={post.title} onClick={() => openBulletin()} />
+        )}
       </ContainerDivider>
       <ContainerDivider>
-        <ViewContainer>
-          <ViewIcon />
-          <View text={String(post.viewsCount)} />
-        </ViewContainer>
         <HeartContainer>
           <HeartFull />
           <Like text={post.likesCount + "개"} />
         </HeartContainer>
+        <ViewContainer>
+          <ViewIcon />
+          <View text={String(post.viewsCount)} />
+        </ViewContainer>
       </ContainerDivider>
     </Container>
   );
