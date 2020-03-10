@@ -22,18 +22,16 @@ const Container = styled.div`
   background-image: url(${props => props.url});
   background-size: cover;
   border-radius: 50%;
-  border:0.5px solid ${props => props.theme.lightGray3}
   margin-right: 10px;
 `;
 
-const Avatar = ({ size, url, className, onClick }) => (
-  <Container className={className} size={size} url={url} onClick={onClick} />
+const Avatar = ({ size, url, className }) => (
+  <Container className={className} size={size} url={url} />
 );
 
 Avatar.propTypes = {
   size: PropTypes.oneOf(["sm", "md", "lg"]),
-  url: PropTypes.string.isRequired,
-  onClick: PropTypes.func
+  url: PropTypes.string.isRequired
 };
 
 export default Avatar;
