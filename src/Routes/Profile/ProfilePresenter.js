@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Avatar from "../../Components/Avatar";
 import FatText from "../../Components/FatText";
 import Button from "../../Components/Button/Button";
@@ -10,7 +10,7 @@ import CommentLine from "../../Components/CommentLine";
 import MeetingLine from "../../Components/MeetingLine";
 import EditProfile from "../../Components/EditProfile";
 import { BREAK_POINT_MOBILE } from "../../utils/mediaQuery";
-
+import ProfileUpdate from "../../Components/ProfileUpdate";
 const Wrapper = styled.div`
   min-height: 80vh;
   align-items: center;
@@ -50,9 +50,20 @@ const HeaderColumn = styled.div`
   @media (max-width: ${BREAK_POINT_MOBILE}px) {
   }
 `;
+const Animation = keyframes`
+    0%{
+        opacity:1
+    }
+    3%{
+      opacity:0.3
+    }
+    100%{
+        opacity:0.1
+    }
+`;
 const AvatarM = styled(Avatar)`
   &:hover {
-    opacity: 0.3;
+    animation: 10s ${Animation} linear;
   }
   cursor: pointer;
   @media (max-width: ${BREAK_POINT_MOBILE}px) {
@@ -182,7 +193,7 @@ const Tab = styled.span`
   width: 250px;
   text-align: center;
   &:hover {
-    font-weight: 700;
+    animation: 10s ${Animation} linear;
   }
   @media (max-width: ${BREAK_POINT_MOBILE}px) {
     width: 33%;
@@ -200,7 +211,10 @@ export default ({
   action,
   setAction,
   editAction,
-  editProfile
+  editProfile,
+  update,
+  setUpdate,
+  refetch
 }) => {
   if (loading) {
     return (
@@ -238,73 +252,86 @@ export default ({
           <Helmet>
             <title>{userName} | Originals</title>
           </Helmet>
-          <Header>
-            <HeaderColumn>
-              <AvatarM size={"lg"} url={avatar} />
-            </HeaderColumn>
-            <HeaderColumn>
-              <UsernameRow>
-                <UserName text={userName} />
+          {update === false ? (
+            <Header>
+              <HeaderColumn>
+                <AvatarM
+                  size={"lg"}
+                  url={avatar}
+                  onClick={() => setUpdate(true)}
+                />
+              </HeaderColumn>
+              <HeaderColumn>
+                <UsernameRow>
+                  <UserName text={userName} />
 
-                {isSelf ? (
-                  <WholeButtonContainer>
-                    <ButtonContainer>
-                      <ProfileButton
-                        onClick={() => editProfile("Edit")}
-                        text={"계정 수정"}
-                      />
-                    </ButtonContainer>
+                  {isSelf ? (
+                    <WholeButtonContainer>
+                      <ButtonContainer>
+                        <ProfileButton
+                          onClick={() => editProfile("Edit")}
+                          text={"계정 수정"}
+                        />
+                      </ButtonContainer>
 
-                    <ButtonContainer>
-                      <ProfileButton onClick={logOut} text={"로그아웃"} />
-                    </ButtonContainer>
-                  </WholeButtonContainer>
-                ) : null}
-              </UsernameRow>
+                      <ButtonContainer>
+                        <ProfileButton onClick={logOut} text={"로그아웃"} />
+                      </ButtonContainer>
+                    </WholeButtonContainer>
+                  ) : null}
+                </UsernameRow>
 
-              <ProfileContainer>
-                {isSelf ? (
-                  <>
-                    <ProfileTextContainer>
-                      <ProfileInfo text={"이메일 : " + email} />
-                    </ProfileTextContainer>
-                    <ProfileTextContainer>
-                      <ProfileInfo text={"생일 : " + birthday} />
-                    </ProfileTextContainer>
-                    <ProfileTextContainer>
-                      <ProfileInfo text={"핸드폰번호 : " + phoneNum} />
-                    </ProfileTextContainer>
-                  </>
-                ) : null}
-                <ProfileTextContainer>
-                  {classes === 1 ? (
-                    <ProfileInfo text={"신입회원"} />
-                  ) : classes === 2 ? (
-                    <ProfileInfo text={"일반회원"} />
-                  ) : (
-                    <ProfileInfo text={"정회원"} />
-                  )}
-                </ProfileTextContainer>
-              </ProfileContainer>
+                <ProfileContainer>
+                  {isSelf ? (
+                    <>
+                      <ProfileTextContainer>
+                        <ProfileInfo text={"이메일 : " + email} />
+                      </ProfileTextContainer>
+                      <ProfileTextContainer>
+                        <ProfileInfo text={"생일 : " + birthday} />
+                      </ProfileTextContainer>
+                      <ProfileTextContainer>
+                        <ProfileInfo text={"핸드폰번호 : " + phoneNum} />
+                      </ProfileTextContainer>
+                    </>
+                  ) : null}
+                  <ProfileTextContainer>
+                    {classes === 1 ? (
+                      <ProfileInfo text={"신입회원"} />
+                    ) : classes === 2 ? (
+                      <ProfileInfo text={"일반회원"} />
+                    ) : (
+                      <ProfileInfo text={"정회원"} />
+                    )}
+                  </ProfileTextContainer>
+                </ProfileContainer>
 
-              {/* isSelf 일 경우 이메일, 생일 폰번, 등 표시 */}
-              {/* 회원구분 표시 */}
-              <Counts>
-                <Count>
-                  <FatText text={String(postsCount)} /> 게시글
-                </Count>
-                <Count>
-                  <FatText text={String(commentsCount)} /> 댓글
-                </Count>
-                <Count>
-                  <FatText text={String(participantsCount)} /> 모임 참가
-                </Count>
-                {/* <Count>
+                {/* isSelf 일 경우 이메일, 생일 폰번, 등 표시 */}
+                {/* 회원구분 표시 */}
+                <Counts>
+                  <Count>
+                    <FatText text={String(postsCount)} /> 게시글
+                  </Count>
+                  <Count>
+                    <FatText text={String(commentsCount)} /> 댓글
+                  </Count>
+                  <Count>
+                    <FatText text={String(participantsCount)} /> 모임 참가
+                  </Count>
+                  {/* <Count>
                 <FatText text={String(postsCount)} /> 도서 대여
               </Count> */}
-              </Counts>
-            </HeaderColumn>
-          </Header>
+                </Counts>
+              </HeaderColumn>
+            </Header>
+          ) : (
+            <ProfileUpdate
+              setUpdate={setUpdate}
+              avatar={avatar}
+              refetch={refetch}
+            />
+          )}
+
           <MainContainer>
             <TabContainer>
               <Tab onClick={() => setAction("bulletin")}>게시글</Tab>

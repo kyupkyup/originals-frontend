@@ -35,14 +35,22 @@ const EditMeetingContainer = ({ meetingId, setEdit, refetch }) => {
       setMapAction(false);
     }
   };
+  const [dateTime, setDateTime] = useState("2020-03-07 12:00");
+  const setState = async dateTime1 => {
+    await setDateTime(dateTime1);
+  };
+  const [limitDateTime, setLimitDateTime] = useState("2020-03-07 12:00");
+  const setLimitState = async dateTime1 => {
+    await setLimitDateTime(dateTime1);
+  };
   const [writeMutation] = useMutation(WRITE_MEETING, {
     variables: {
       title: titleEdit.value,
       main: mainCheck,
-      meetingTime: meetingTimeEdit.value,
+      meetingTime: dateTime,
       meetingPlace: meetingPlaceEdit.value,
       meetingPrice: meetingPriceEdit.value,
-      deadline: deadlineEdit.value,
+      deadline: limitDateTime,
       coords: marker.current.toString(),
       // latitude: marker.current.getLat(),
       // longitude: marker.current.getLng(),
@@ -54,11 +62,11 @@ const EditMeetingContainer = ({ meetingId, setEdit, refetch }) => {
       id: meetingId,
       title: titleEdit.value,
       main: mainCheck,
-      meetingTime: meetingTimeEdit.value,
+      meetingTime: dateTime,
       meetingPlace: meetingPlaceEdit.value,
       meetingPrice: meetingPriceEdit.value,
 
-      deadline: deadlineEdit.value,
+      deadline: limitDateTime,
       coords: marker.current.toString(),
 
       // latitude: marker.current.getLat(),
@@ -72,10 +80,10 @@ const EditMeetingContainer = ({ meetingId, setEdit, refetch }) => {
       id: meetingId,
       title: titleEdit.value,
       main: mainCheck,
-      meetingTime: meetingTimeEdit.value,
+      meetingTime: dateTime,
       meetingPlace: meetingPlaceEdit.value,
       meetingPrice: meetingPriceEdit.value,
-      deadline: deadlineEdit.value,
+      deadline: limitDateTime,
       coords: marker.current.toString(),
 
       // latitude: marker.current.getLat(),
@@ -146,14 +154,7 @@ const EditMeetingContainer = ({ meetingId, setEdit, refetch }) => {
     await refetch();
     setTimeout(() => setEdit("read"), 1000);
   };
-  const [dateTime, setDateTime] = useState("2020-03-07 12:00");
-  const setState = async dateTime1 => {
-    await setDateTime(dateTime1);
-  };
-  const [limitDateTime, setLimitDateTime] = useState("2020-03-07 12:00");
-  const setLimitState = async dateTime1 => {
-    await setLimitDateTime(dateTime1);
-  };
+
   if (meetingId === "write") {
     return (
       <EditMeetingPresenter

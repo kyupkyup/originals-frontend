@@ -10,13 +10,14 @@ export default withRouter(
       params: { email }
     }
   }) => {
-    const { data, loading } = useQuery(GET_USER, {
+    const { data, loading, refetch } = useQuery(GET_USER, {
       variables: { email }
     });
     const [logUserOut] = useMutation(LOG_OUT);
     const [action, setAction] = useState("bulletin");
     const [editAction, setEditAction] = useState("Profile");
-
+    const [update, setUpdate] = useState(false);
+    console.log(update);
     const editProfile = async () => {
       if (editAction === "Profile") {
         await setEditAction("Edit");
@@ -33,6 +34,9 @@ export default withRouter(
         setAction={setAction}
         editAction={editAction}
         editProfile={editProfile}
+        update={update}
+        setUpdate={setUpdate}
+        refetch={refetch}
       />
     );
   }

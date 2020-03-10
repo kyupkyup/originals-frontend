@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import "react-tabs/style/react-tabs.css";
 import TextareaAutoSize from "react-autosize-textarea";
 import FatText from "../FatText";
@@ -106,10 +106,21 @@ const MetaText = styled(FatText)`
   margin-left: 5px;
   font-size: 13pt;
 `;
-
+const Animation = keyframes`
+    0%{
+        opacity:1
+    }
+    3%{
+      opacity:0.3
+    }
+    100%{
+        opacity:0.1
+    }
+`;
 const Button = styled.span`
+  cursor: pointer;
   &:hover {
-    opacity: 0.5;
+    animation: 10s ${Animation} linear;
   }
 `;
 
