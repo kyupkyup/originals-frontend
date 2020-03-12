@@ -13,14 +13,15 @@ const EditPostContainer = ({ postId, setEdit, refetch }) => {
     variables: { id: postId }
   });
 
+  const [loadingB, setLoading] = useState(false);
   const titleEdit = useInput("");
   const captionEdit = useInput("");
-  const defaultOption = classifyOptions[0];
+  const [defaultOptionNum, setDefaultOptions] = useState("공지사항");
   const [mainCheck, setMainCheck] = useState(false);
   const [announceCheck, setAnnounceCheck] = useState(false);
   const [writeMutation] = useMutation(WRITE_POST, {
     variables: {
-      classifyNum: classifyOptions.indexOf(defaultOption) + 1,
+      classifyNum: defaultOptionNum,
       main: mainCheck,
       announcement: announceCheck,
       title: titleEdit.value,
@@ -31,7 +32,7 @@ const EditPostContainer = ({ postId, setEdit, refetch }) => {
   const [editMutation] = useMutation(EDIT_POST, {
     variables: {
       id: postId,
-      classifyNum: classifyOptions.indexOf(defaultOption) + 1,
+      classifyNum: defaultOptionNum,
       main: mainCheck,
       announcement: announceCheck,
       title: titleEdit.value,
@@ -42,7 +43,7 @@ const EditPostContainer = ({ postId, setEdit, refetch }) => {
   const [deleteMutation] = useMutation(EDIT_POST, {
     variables: {
       id: postId,
-      classifyNum: classifyOptions.indexOf(defaultOption) + 1,
+      classifyNum: defaultOptionNum,
       main: mainCheck,
       announcement: announceCheck,
       title: titleEdit.value,
@@ -67,6 +68,7 @@ const EditPostContainer = ({ postId, setEdit, refetch }) => {
   };
   const onSubmit = async e => {
     e.preventDefault();
+    setLoading(true);
     if (postId === "write") {
       if (titleEdit.value === "" || captionEdit.value === "") {
         toast.error("제목과 게시글 내용을 입력해주세요.");
@@ -79,13 +81,13 @@ const EditPostContainer = ({ postId, setEdit, refetch }) => {
         if (!upload) {
           toast.error("게시글을 등록할 수 없습니다.");
         } else if (upload) {
-          toast.success("게시글이 등록되었습니다.");
           await refetch();
-
-          setTimeout(() => setEdit("read"), 1000);
+          toast.success("게시글이 등록되었습니다.");
         }
       } catch {
         toast.error("게시글을 등록할 수 없습니다.");
+      } finally {
+        setLoading(false);
       }
     } else {
       if (titleEdit.value === "" || captionEdit.value === "") {
@@ -98,12 +100,14 @@ const EditPostContainer = ({ postId, setEdit, refetch }) => {
         if (!editPost) {
           toast.error("게시글을 등록할 수 없습니다.");
         } else if (editPost) {
-          toast.success("게시글이 수정되었습니다.");
           await refetch();
-          setTimeout(() => setEdit("read"), 1000);
+
+          toast.success("게시글이 수정되었습니다.");
         }
       } catch {
         toast.error("게시글을 등록할 수 없습니다.");
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -119,7 +123,7 @@ const EditPostContainer = ({ postId, setEdit, refetch }) => {
         postId={postId}
         titleEdit={titleEdit}
         captionEdit={captionEdit}
-        defaultOption={defaultOption}
+        defaultOption={defaultOptionNum}
         clickCheck={clickCheck}
         clickAnnounce={clickAnnounce}
         mainCheck={mainCheck}
@@ -128,6 +132,8 @@ const EditPostContainer = ({ postId, setEdit, refetch }) => {
         setEdit={setEdit}
         onSubmit={onSubmit}
         deletePost={deletePost}
+        setDefaultOptions={setDefaultOptions}
+        loadingB={loadingB}
       />
     );
   } else {
@@ -146,8 +152,6 @@ const EditPostContainer = ({ postId, setEdit, refetch }) => {
           caption
         }
       } = data;
-      const editDefaultOption = classifyOptions[classifyNum - 1];
-
       if (titleEdit.value === "") {
         titleEdit.setValue(title);
       }
@@ -167,7 +171,7 @@ const EditPostContainer = ({ postId, setEdit, refetch }) => {
           author={author}
           titleEdit={titleEdit}
           captionEdit={captionEdit}
-          defaultOption={editDefaultOption}
+          defaultOption={classifyNum}
           options={classifyOptions}
           clickCheck={clickCheck}
           clickAnnounce={clickAnnounce}
@@ -176,6 +180,8 @@ const EditPostContainer = ({ postId, setEdit, refetch }) => {
           setEdit={setEdit}
           onSubmit={onSubmit}
           deletePost={deletePost}
+          setDefaultOptions={setDefaultOptions}
+          loadingB={loadingB}
         />
       );
     } else {

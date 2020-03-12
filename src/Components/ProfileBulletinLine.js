@@ -26,10 +26,8 @@ const VIEW = gql`
 const Container = styled.div`
   width: 100%;
   display: flex;
-  justify-content: left;
   flex-direction: row;
   border-top: 0.5px solid ${props => props.theme.lightGray3}
-
   border-bottom: 0.5px solid ${props => props.theme.lightGray3}
   margin-bottom:5px;
 `;
@@ -58,7 +56,7 @@ const ContainerDivider = styled.div`
 const TitleContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 200px;
+  width: 100%;
 `;
 
 const Title = styled(FatText)`
@@ -96,26 +94,12 @@ const Like = styled(FatText)`
   padding: 5px 0;
 `;
 
-const BulletinLine = ({ post, userId, setEditId, action, setAction }) => {
+const ProfileBulletinLine = ({ post, action, setAction }) => {
   const [togglePostMutation] = useMutation(VIEW, {
     variables: { postId: post.id }
   });
   const openBulletin = async () => {
-    if (action === "nothing") {
-      await setAction(post.id);
-      if (userId === post.author.id) {
-        await setEditId(post.id);
-      } else {
-        await setEditId("");
-      }
-    } else if (action !== "nothing") {
-      await setAction(post.id);
-      if (userId === post.author.id) {
-        await setEditId(post.id);
-      } else {
-        await setEditId("");
-      }
-    }
+    setAction(post.id);
     await togglePostMutation();
   };
   return (
@@ -125,11 +109,7 @@ const BulletinLine = ({ post, userId, setEditId, action, setAction }) => {
       </AnnounceContainer>
 
       <TitleContainer>
-        {action === "main" ? (
-          <Title text={post.title} />
-        ) : (
-          <Title text={post.title} onClick={() => openBulletin()} />
-        )}
+        <Title text={post.title} onClick={() => openBulletin()} />
       </TitleContainer>
       <ContainerDivider>
         <HeartContainer>
@@ -145,7 +125,7 @@ const BulletinLine = ({ post, userId, setEditId, action, setAction }) => {
   );
 };
 
-BulletinLine.propTypes = {
+ProfileBulletinLine.propTypes = {
   post: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -163,4 +143,4 @@ BulletinLine.propTypes = {
     })
   )
 };
-export default BulletinLine;
+export default ProfileBulletinLine;

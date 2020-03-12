@@ -22,6 +22,7 @@ const SEE_FULL_BULLETIN_LIST = gql`
         author {
           id
         }
+        main
         announcement
         isViewed
         likesCount
@@ -37,6 +38,8 @@ const BulletinContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   @media (max-width: ${BREAK_POINT_MOBILE}px) {
     padding: 3px 10px;
   }

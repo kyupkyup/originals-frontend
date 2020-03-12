@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Dropdown from "react-dropdown";
+import DropdownCompo from "../Dropdown";
 import CheckboxToggle from "../semi-component/toggle";
 import Input from "../Input";
 import { X } from "../Icons";
@@ -8,6 +8,8 @@ import Button from "../Button/Button";
 import Textarea from "../Textarea";
 import "react-dropdown/style.css";
 import { BREAK_POINT_MOBILE } from "../../utils/mediaQuery";
+import { Label } from "semantic-ui-react";
+import FatText from "../FatText";
 
 const Container = styled.div`
   ${props => props.theme.whiteBox}
@@ -49,7 +51,7 @@ const TitleContainer = styled.div`
   }
 `;
 const Title = styled(Input)`
-  width: 100%;
+  width: 300px;
 `;
 
 const SpinnerContainer = styled.div`
@@ -63,21 +65,23 @@ const SpinnerContainer = styled.div`
     margin-left: 10px;
   }
   @media (max-width: ${BREAK_POINT_MOBILE}px) {
-    width: 300px;
+    width: 250px;
     font-size: 10pt;
     margin: 0;
   }
 `;
-const DropdownM = styled(Dropdown)`
-  width: 200px;
-  @media (max-width: ${BREAK_POINT_MOBILE}px) {
-    width: 200px;
-  }
-`;
+
 const CheckboxToggleM = styled(CheckboxToggle)`
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    margin-left: 20px;
+    width: 50px;
+  }
+
   margin-left: 10px;
 `;
-
+const Text = styled(FatText)`
+  width: 50px;
+`;
 const CaptionContainer = styled.div`
   width: 100%;
   padding: 10px;
@@ -108,7 +112,9 @@ export default ({
   announceCheck,
   onSubmit,
   setEdit,
-  deletePost
+  deletePost,
+  setDefaultOptions,
+  loadingB
 }) => {
   if (postId === "write") {
     return (
@@ -125,26 +131,26 @@ export default ({
               <Title placeholder={"제목"} {...titleEdit} />
             </TitleContainer>
             <SpinnerContainer>
-              <DropdownM
+              <DropdownCompo
+                setDefaultOptions={setDefaultOptions}
                 options={options}
-                value={defaultOption}
-                placeholder={"글 종류를 선택하세요."}
+                defaultOption={defaultOption}
               />
               <CheckboxToggleM
                 checked={mainCheck}
                 onClick={() => clickCheck()}
               />{" "}
-              메인
+              <Text text={"메인"} />
               <CheckboxToggleM
                 checked={announceCheck}
                 onClick={() => clickAnnounce()}
               />{" "}
-              공지
+              <Text text={"공지"} />
             </SpinnerContainer>
             <CaptionContainer>
               <Caption placeholder={"글 내용"} {...captionEdit} />
             </CaptionContainer>
-            <SubmitButton text={"글 쓰기"} />
+            <SubmitButton text={"글 쓰기"} loading={loadingB} />
           </form>
         </Container>
       </>
@@ -163,10 +169,10 @@ export default ({
               <Title placeholder={"제목"} {...titleEdit} />
             </TitleContainer>
             <SpinnerContainer>
-              <DropdownM
+              <DropdownCompo
+                setDefaultOptions={setDefaultOptions}
                 options={options}
-                value={defaultOption}
-                placeholder={"글 종류를 선택하세요."}
+                defaultOption={defaultOption}
               />
               <CheckboxToggleM
                 checked={mainCheck}
@@ -183,7 +189,7 @@ export default ({
               <Caption placeholder={"글 내용"} {...captionEdit} />
             </CaptionContainer>
             <ButtonContainer>
-              <SubmitButton text={"수정하기"} />
+              <SubmitButton text={"수정하기"} loading={loadingB} />
             </ButtonContainer>
           </form>
           <ButtonContainer>

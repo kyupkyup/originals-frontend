@@ -1,7 +1,7 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-
+import Spinner from "react-bootstrap/Spinner";
 const Container = styled.button`
   width: 100%;
   border: 0;
@@ -15,13 +15,17 @@ const Container = styled.button`
   cursor: pointer;
 `;
 
-const Button = ({ text, onClick }) => (
-  <Container onClick={onClick}>{text}</Container>
+const Button = ({ text, onClick, loading }) => (
+  <Container onClick={onClick} loading={loading}>
+    {loading ? <Spinner as="span" size="sm" animation="border" /> : null}
+    {text}
+  </Container>
 );
 
 Button.propTypes = {
   text: PropTypes.string.isRequired,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  loading: PropTypes.bool
 };
 
 export default Button;

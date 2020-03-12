@@ -122,6 +122,7 @@ export default withRouter(
               participantsCount={meeting.participantsCount}
               createdAt={meeting.createdAt}
               userId={id}
+              refetch={refetch}
               setEditing={setEditing}
             />
           ))}

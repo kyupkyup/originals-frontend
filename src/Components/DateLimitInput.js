@@ -17,14 +17,14 @@ class DateLimitInput extends Component {
     this.datetimeRef = undefined;
     this.state = {
       datetime: props.value,
-      value: "",
+      value: props.value,
       valueChange: false
     };
   }
 
   onDatetime(datetime, value) {
     this.setState({ datetime, value });
-    this.props.setState(value);
+    this.props.setLimitState(value);
   }
 
   onOpen() {
@@ -82,7 +82,7 @@ class DateLimitInput extends Component {
   }
 }
 DateLimitInput.propTypes = {
-  setState: PropTypes.func,
+  setLimitState: PropTypes.func,
   value: PropTypes.object
 };
 export default DateLimitInput;

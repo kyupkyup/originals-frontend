@@ -12,15 +12,22 @@ const EditMeetingContainer = ({ meetingId, setEdit, refetch }) => {
       id: meetingId
     }
   });
+  const [loadingB, setLoading] = useState(false);
   const titleEdit = useInput("");
-  const meetingTimeEdit = useInput("");
   const meetingPlaceEdit = useInput("");
   const meetingPriceEdit = useInput("");
-  const deadlineEdit = useInput("");
   const meetingHeadCountsEdit = useInput("");
   const marker = useRef("");
   const [mainCheck, setMainCheck] = useState(false);
   const [mapAction, setMapAction] = useState(false);
+  const [dateTime, setDateTime] = useState("");
+  const setState = async dateTime1 => {
+    await setDateTime(dateTime1);
+  };
+  const [limitDateTime, setLimitDateTime] = useState("");
+  const setLimitState = async dateTime1 => {
+    await setLimitDateTime(dateTime1);
+  };
   const clickCheck = () => {
     if (!mainCheck) {
       setMainCheck(true);
@@ -35,17 +42,21 @@ const EditMeetingContainer = ({ meetingId, setEdit, refetch }) => {
       setMapAction(false);
     }
   };
+  const translate = coords => {
+    coords = coords.replace(/\s/g, "");
+    coords = coords.replace(/\)/g, "");
+    coords = coords.replace(/\(/g, "");
+    return coords;
+  };
   const [writeMutation] = useMutation(WRITE_MEETING, {
     variables: {
       title: titleEdit.value,
       main: mainCheck,
-      meetingTime: meetingTimeEdit.value,
+      meetingTime: dateTime,
       meetingPlace: meetingPlaceEdit.value,
       meetingPrice: meetingPriceEdit.value,
-      deadline: deadlineEdit.value,
+      deadline: limitDateTime,
       coords: marker.current.toString(),
-      // latitude: marker.current.getLat(),
-      // longitude: marker.current.getLng(),
       meetingHeadCounts: parseInt(meetingHeadCountsEdit.value)
     }
   });
@@ -54,15 +65,11 @@ const EditMeetingContainer = ({ meetingId, setEdit, refetch }) => {
       id: meetingId,
       title: titleEdit.value,
       main: mainCheck,
-      meetingTime: meetingTimeEdit.value,
+      meetingTime: dateTime,
       meetingPlace: meetingPlaceEdit.value,
       meetingPrice: meetingPriceEdit.value,
-
-      deadline: deadlineEdit.value,
+      deadline: limitDateTime,
       coords: marker.current.toString(),
-
-      // latitude: marker.current.getLat(),
-      // longitude: marker.current.getLng(),
       meetingHeadCounts: parseInt(meetingHeadCountsEdit.value),
       action: "EDIT"
     }
@@ -72,88 +79,88 @@ const EditMeetingContainer = ({ meetingId, setEdit, refetch }) => {
       id: meetingId,
       title: titleEdit.value,
       main: mainCheck,
-      meetingTime: meetingTimeEdit.value,
+      meetingTime: dateTime,
       meetingPlace: meetingPlaceEdit.value,
       meetingPrice: meetingPriceEdit.value,
-      deadline: deadlineEdit.value,
+      deadline: limitDateTime,
       coords: marker.current.toString(),
-
-      // latitude: marker.current.getLat(),
-      // longitude: marker.current.getLng(),
       meetingHeadCounts: parseInt(meetingHeadCountsEdit.value),
       action: "DELETE"
     }
   });
   const onSubmit = async e => {
     e.preventDefault();
+    setLoading(true);
     if (meetingId === "write") {
       if (
         titleEdit === "" ||
-        meetingTimeEdit === "" ||
         meetingPlaceEdit === "" ||
         meetingPriceEdit === "" ||
-        deadlineEdit === "" ||
         meetingHeadCountsEdit === ""
       ) {
         toast.error("빈칸을 채워주세요.");
+        setLoading(false);
       } else {
         try {
           const {
             data: { uploadMeeting }
           } = await writeMutation();
           if (uploadMeeting) {
-            toast.success("모임 등록에 성공했습니다.");
             await refetch();
-            setTimeout(() => setEdit("read"), 1000);
+
+            toast.success("모임 등록에 성공했습니다.");
+            setEdit("read");
           } else if (!uploadMeeting) {
             toast.error("모임을 등록할 수 없습니다.");
           }
         } catch {
           toast.error("모임을 등록할 수 없습니다.");
+        } finally {
+          setLoading(false);
+          setEdit("read");
         }
       }
     } else {
       if (
         titleEdit === "" ||
-        meetingTimeEdit === "" ||
         meetingPlaceEdit === "" ||
         meetingPriceEdit === "" ||
-        deadlineEdit === "" ||
         meetingHeadCountsEdit === ""
       ) {
         toast.error("빈칸을 채워주세요.");
+        setLoading(false);
       } else {
         try {
           const {
             data: { editMeeting }
           } = await editMutation();
           if (editMeeting) {
-            toast.success("모임 수정에 성공했습니다.");
             await refetch();
 
-            setTimeout(() => setEdit("read"), 1000);
+            toast.success("모임 수정에 성공했습니다.");
+            setEdit("read");
           } else if (!editMeeting) {
             toast.error("모임을 수정할 수 없습니다.");
+            setEdit("read");
           }
         } catch {
           toast.error("모임을 수정할 수 없습니다.");
+          setEdit("read");
+        } finally {
+          setLoading(false);
+          setEdit("read");
         }
       }
     }
   };
   const deleteMeeting = async () => {
-    deleteMutation();
+    setLoading(true);
+
+    await deleteMutation();
     await refetch();
-    setTimeout(() => setEdit("read"), 1000);
+    setLoading(false);
   };
-  const [dateTime, setDateTime] = useState("2020-03-07 12:00");
-  const setState = async dateTime1 => {
-    await setDateTime(dateTime1);
-  };
-  const [limitDateTime, setLimitDateTime] = useState("2020-03-07 12:00");
-  const setLimitState = async dateTime1 => {
-    await setLimitDateTime(dateTime1);
-  };
+
   if (meetingId === "write") {
     return (
       <EditMeetingPresenter
@@ -175,6 +182,7 @@ const EditMeetingContainer = ({ meetingId, setEdit, refetch }) => {
         setMarker={marker}
         setState={setState}
         setLimitState={setLimitState}
+        loadingB={loadingB}
       />
     );
   } else {
@@ -196,8 +204,8 @@ const EditMeetingContainer = ({ meetingId, setEdit, refetch }) => {
       if (titleEdit.value === "") {
         titleEdit.setValue(title);
       }
-      if (meetingTimeEdit.value === "") {
-        setDateTime.setValue(meetingTime);
+      if (dateTime === "") {
+        setDateTime(meetingTime);
       }
       if (meetingPlaceEdit.value === "") {
         meetingPlaceEdit.setValue(meetingPlace);
@@ -205,8 +213,8 @@ const EditMeetingContainer = ({ meetingId, setEdit, refetch }) => {
       if (meetingPriceEdit.value === "") {
         meetingPriceEdit.setValue(meetingPrice);
       }
-      if (deadlineEdit.value === "") {
-        limitDateTime.setValue(deadline);
+      if (limitDateTime === "") {
+        setLimitDateTime(deadline);
       }
       if (meetingHeadCountsEdit.value === "") {
         meetingHeadCountsEdit.setValue(meetingHeadCounts);
@@ -235,7 +243,10 @@ const EditMeetingContainer = ({ meetingId, setEdit, refetch }) => {
           mapAction={mapAction}
           setMarker={marker}
           setState={setState}
+          coordsParam={coords}
           dateTime={dateTime}
+          loadingB={loadingB}
+          translate={translate}
         />
       );
     } else {

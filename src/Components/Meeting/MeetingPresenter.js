@@ -204,7 +204,8 @@ export default ({
   clickDrop,
   participate,
   userId,
-  setEditing
+  setEditing,
+  loadingB
 }) => {
   if (mapAction === true) {
     const script = document.createElement("script");
@@ -314,10 +315,22 @@ export default ({
       />
       {dropdown ? <Participants meetingId={meetingId} /> : null}
       <ButtonContainer>
-        {participantsCount <= meetingHeadCounts ? (
-          <Button text={"참석하기"} onClick={() => participate()} />
+        {!isParticipated ? (
+          participantsCount >= meetingHeadCounts ? (
+            <DisabledButton text={"참석하기"} loading={loadingB} />
+          ) : (
+            <Button
+              text={"참석하기"}
+              onClick={() => participate()}
+              loading={loadingB}
+            />
+          )
         ) : (
-          <DisabledButton text={"참석하기"} />
+          <Button
+            text={"참석 취소"}
+            onClick={() => participate()}
+            loading={loadingB}
+          />
         )}
       </ButtonContainer>
       <ButtonContainer>

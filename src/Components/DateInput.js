@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import DatetimePicker, { parseDate } from "react-datetimepicker-syaku";
+import styled from "styled-components";
 import "../Styles/css/dateCss.css";
 require("flatpickr/dist/themes/dark.css");
 
@@ -17,7 +18,7 @@ class DateInput extends Component {
     this.datetimeRef = undefined;
     this.state = {
       datetime: props.value,
-      value: "",
+      value: props.value,
       valueChange: false
     };
   }
@@ -58,6 +59,7 @@ class DateInput extends Component {
   render() {
     return (
       <DatetimePicker
+        className="dateContainer"
         ref={node => {
           this.datetimeRef = node;
         }}

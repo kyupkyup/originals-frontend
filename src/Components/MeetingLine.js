@@ -8,7 +8,10 @@ const Container = styled.div`
   display: flex;
   justify-content: left;
   flex-direction: row;
-  ${props => props.theme.border}
+  border-top: 0.5px solid ${props => props.theme.lightGray3}
+
+  border-bottom: 0.5px solid ${props => props.theme.lightGray3}
+  margin-bottom:5px;
 `;
 
 const ContainerDivider = styled.div`

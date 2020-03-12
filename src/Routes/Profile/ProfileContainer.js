@@ -10,12 +10,13 @@ export default withRouter(
       params: { email }
     }
   }) => {
-    const { data, loading } = useQuery(GET_USER, {
+    const { refetch, data, loading } = useQuery(GET_USER, {
       variables: { email }
     });
     const [logUserOut] = useMutation(LOG_OUT);
     const [action, setAction] = useState("bulletin");
     const [editAction, setEditAction] = useState("Profile");
+    const [update, setUpdate] = useState(false);
 
     const editProfile = async () => {
       if (editAction === "Profile") {
@@ -24,6 +25,7 @@ export default withRouter(
         await setEditAction("Profile");
       }
     };
+
     return (
       <ProfilePresenter
         loading={loading}
@@ -33,6 +35,9 @@ export default withRouter(
         setAction={setAction}
         editAction={editAction}
         editProfile={editProfile}
+        update={update}
+        setUpdate={setUpdate}
+        refetch={refetch}
       />
     );
   }

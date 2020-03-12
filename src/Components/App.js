@@ -8,7 +8,6 @@ import { useQuery } from "react-apollo-hooks";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import GlobalStyles from "../Styles/GlobalStyles";
-
 import Theme from "../Styles/Theme";
 import AppRouter from "./Router";
 

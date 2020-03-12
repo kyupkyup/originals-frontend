@@ -13,6 +13,7 @@ const EditProfileContainer = ({ id, editProfile, logOut }) => {
       id: id
     }
   });
+  const [loadingB, setLoading] = useState(false);
   const [action, setAction] = useState("EDIT");
 
   const passwordEdit = useInput("");
@@ -35,6 +36,7 @@ const EditProfileContainer = ({ id, editProfile, logOut }) => {
 
   const onSubmit = async e => {
     e.preventDefault();
+    setLoading(true);
     if (action === "EDIT") {
       if (
         passwordEdit.value !== "" &&
@@ -46,9 +48,10 @@ const EditProfileContainer = ({ id, editProfile, logOut }) => {
         try {
           await editAccountMutation();
           toast.success("계정 수정 성공");
-          setTimeout(() => editProfile("Profile"), 3000);
         } catch {
           toast.error("계정을 수정할 수 없습니다. 다시 시도해주세요.");
+        } finally {
+          setLoading(false);
         }
       } else {
         toast.error("빈칸을 남겨두지 마세요.");
@@ -60,6 +63,8 @@ const EditProfileContainer = ({ id, editProfile, logOut }) => {
         logOut();
       } catch {
         toast.error("계정을 삭제할 수 없습니다. 다시 시도해주세요.");
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -95,7 +100,6 @@ const EditProfileContainer = ({ id, editProfile, logOut }) => {
     return (
       <EditProfilePresenter
         email={email}
-        avatar={avatar}
         passwordEdit={passwordEdit}
         userNameEdit={userNameEdit}
         phoneNumEdit={phoneNumEdit}
@@ -103,6 +107,7 @@ const EditProfileContainer = ({ id, editProfile, logOut }) => {
         introduceEdit={introduceEdit}
         onSubmit={onSubmit}
         setAction={setAction}
+        loadingB={loadingB}
       />
     );
   }

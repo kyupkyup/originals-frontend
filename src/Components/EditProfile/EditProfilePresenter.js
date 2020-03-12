@@ -62,7 +62,8 @@ export default ({
   birthdayEdit,
   introduceEdit,
   onSubmit,
-  setAction
+  setAction,
+  loadingB
 }) => {
   return (
     <Wrapper>
@@ -87,7 +88,7 @@ export default ({
           <Input placeholder={"생일"} {...birthdayEdit} />
           <Input placeholder={"한 줄 소개"} {...introduceEdit} />
 
-          <Button text={"프로필 수정"} />
+          <Button text={"프로필 수정"} loading={loadingB} />
           <Button text={"계정 삭제"} onClick={() => setAction("DELETE")} />
         </form>
       </Form>

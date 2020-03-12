@@ -2,15 +2,15 @@ import React from "react";
 import { useQuery } from "react-apollo-hooks";
 import PropTypes from "prop-types";
 import { SEE_POST } from "./BulletinQueries";
-import Loader from "../Loader";
 import BulletinContainer from "./BulletinContainer";
+import EmptyBulletin from "./EmptyBulletin";
 
 const BulletinBridge = ({ postId, setAction }) => {
   const { data, loading, refetch } = useQuery(SEE_POST, {
     variables: { id: postId }
   });
   if (loading) {
-    return <Loader />;
+    return <EmptyBulletin loading={loading} />;
   } else if (!loading && data && data.seePost) {
     const {
       seePost: {

@@ -1,27 +1,17 @@
 import React from "react";
-import styled, {keyframes} from "styled-components";
-import { Logo } from "./Icons";
-
-const Animation = keyframes`
-    0%{
-        opacity:0
-    }
-    50%{
-        opacity:1
-    }
-    100%{
-        opacity:0
-    }
+import { css } from "@emotion/core";
+import RingLoader from "react-spinners/RingLoader";
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
 `;
 
-const Loader = styled.div`
-    animation: ${Animation} 1s linear infinite;
-    width:100%:
-    text-aling:center;
-`;
-
-export default () => (
-  <Loader>
-    <Logo size={36} />
-  </Loader>
-);
+const Loader = () => {
+  return (
+    <div className="sweet-loading">
+      <RingLoader css={override} size={60} color={"#0E5A8A"} loading={true} />
+    </div>
+  );
+};
+export default Loader;

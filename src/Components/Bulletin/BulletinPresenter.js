@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import "react-tabs/style/react-tabs.css";
 import TextareaAutoSize from "react-autosize-textarea";
 import FatText from "../FatText";
@@ -8,14 +8,38 @@ import { Link } from "react-router-dom";
 import { HeartFull, HeartEmpty, Comment as CommentIcon } from "../Icons";
 import { BREAK_POINT_MOBILE } from "../../utils/mediaQuery";
 import { X } from "../Icons";
+const Animation = keyframes`
+    0%{
+        opacity:1
+    }
+    3%{
+        opacity:0.3
+    }
+    100%{
+        opacity:0.3
+    }
+`;
+
 const AllContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  @media (min-width: ${BREAK_POINT_MOBILE}px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+
+  @media (max-width: ${BREAK_POINT_MOBILE}px) {
+    max-width: 500px;
+    width: 100%;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 const BulletinContainer2 = styled.div`
   ${props => props.theme.whiteBox}
-  width: 650px;
+  width: 600px;
   height: 80vh;
   overflow-y: auto;
   margin-left: 20px;
@@ -108,8 +132,9 @@ const MetaText = styled(FatText)`
 `;
 
 const Button = styled.span`
+  cursor: pointer;
   &:hover {
-    opacity: 0.5;
+    animation: ${Animation} 10s linear infinite;
   }
 `;
 

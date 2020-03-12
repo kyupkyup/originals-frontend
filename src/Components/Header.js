@@ -1,11 +1,22 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Link, withRouter } from "react-router-dom";
 import { useQuery } from "react-apollo-hooks";
 import { ME } from "../SharedQueries";
 import { Ref } from "semantic-ui-react";
 import { BREAK_POINT_MOBILE } from "../utils/mediaQuery";
 
+const Animation = keyframes`
+    0%{
+        opacity:1
+    }
+    3%{
+        opacity:0.3
+    }
+    100%{
+        opacity:0.3
+    }
+`;
 const Header = styled.header`
   width: 100%;
   background-color: white;
@@ -31,6 +42,8 @@ const HeaderWrapper = styled.div`
   justify-content: center;
 `;
 const HeaderColumn = styled.div`
+  color: ${props => props.theme.blueColor};
+
   width: 50%;
   text-align: center;
   &:first-child {
@@ -43,6 +56,12 @@ const HeaderColumn = styled.div`
   }
 `;
 const HeaderLink = styled(Link)`
+  color: ${props => props.theme.blueColor};
+  font-weight: 600;
+  &:hover {
+    text-decoration: none;
+    animation: ${Animation} 10s linear infinite;
+  }
   &:not(:last-child) {
     margin-right: 30px;
   }
@@ -57,7 +76,7 @@ export default withRouter(() => {
       <Header>
         <HeaderWrapper>
           <HeaderColumn>
-            <Link to="/">Originals</Link>
+            <HeaderLink to="/">Originals</HeaderLink>
           </HeaderColumn>
           <HeaderColumn>
             {!loading && data && data.me ? (

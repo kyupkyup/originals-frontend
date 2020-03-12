@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import "react-tabs/style/react-tabs.css";
 // import TextareaAutoSize from "react-autosize-textarea";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -29,65 +29,127 @@ export default ({ posts, action, setAction, userId, setEditId }) => {
           <Tab>전체</Tab>
           <Tab>공지사항</Tab>
           <Tab>가입인사</Tab>
-          <Tab>익명게시판</Tab>
+          <Tab>자유글</Tab>
         </TabList>
 
         <TabPanel>
-          {posts.map(post => (
-            <BulletinLine
-              post={post}
-              setEditId={setEditId}
-              userId={userId}
-              action={action}
-              setAction={setAction}
-            />
-          ))}
+          {posts
+            .filter(post => post.announcement === true)
+            .map(post => {
+              return (
+                <BulletinLine
+                  post={post}
+                  setEditId={setEditId}
+                  userId={userId}
+                  action={action}
+                  setAction={setAction}
+                />
+              );
+            })}
+          {posts
+            .filter(post => post.announcement === false)
+            .map(post => {
+              return (
+                <BulletinLine
+                  post={post}
+                  setEditId={setEditId}
+                  userId={userId}
+                  action={action}
+                  setAction={setAction}
+                />
+              );
+            })}
         </TabPanel>
 
         <TabPanel>
-          {posts.map(post =>
-            post.classifyNum === 1 ? (
-              <BulletinLine
-                post={post}
-                setEditId={setEditId}
-                userId={userId}
-                action={action}
-                setAction={setAction}
-              />
-            ) : null
-          )}
+          {posts
+            .filter(post => post.announcement === true)
+            .map(post =>
+              post.classifyNum === "공지사항" ? (
+                <BulletinLine
+                  post={post}
+                  setEditId={setEditId}
+                  userId={userId}
+                  action={action}
+                  setAction={setAction}
+                />
+              ) : null
+            )}
+          {posts
+            .filter(post => post.announcement === false)
+            .map(post =>
+              post.classifyNum === "공지사항" ? (
+                <BulletinLine
+                  post={post}
+                  setEditId={setEditId}
+                  userId={userId}
+                  action={action}
+                  setAction={setAction}
+                />
+              ) : null
+            )}
         </TabPanel>
         <TabPanel>
-          {posts.map(post =>
-            post.classifyNum === 2 ? (
-              <BulletinLine
-                post={post}
-                setEditId={setEditId}
-                userId={userId}
-                action={action}
-                setAction={setAction}
-              />
-            ) : null
-          )}
+          {posts
+            .filter(post => post.announcement === true)
+            .map(post =>
+              post.classifyNum === "가입인사" ? (
+                <BulletinLine
+                  post={post}
+                  setEditId={setEditId}
+                  userId={userId}
+                  action={action}
+                  setAction={setAction}
+                />
+              ) : null
+            )}
+          {posts
+            .filter(post => post.announcement === false)
+            .map(post =>
+              post.classifyNum === "가입인사" ? (
+                <BulletinLine
+                  post={post}
+                  setEditId={setEditId}
+                  userId={userId}
+                  action={action}
+                  setAction={setAction}
+                />
+              ) : null
+            )}
         </TabPanel>
         <TabPanel>
-          {posts.map(post =>
-            post.classifyNum === 3 ? (
-              <BulletinLine
-                post={post}
-                setEditId={setEditId}
-                userId={userId}
-                action={action}
-                setAction={setAction}
-              />
-            ) : null
-          )}
+          {posts
+            .filter(post => post.announcement === true)
+            .map(post =>
+              post.classifyNum === "자유글" ? (
+                <BulletinLine
+                  post={post}
+                  setEditId={setEditId}
+                  userId={userId}
+                  action={action}
+                  setAction={setAction}
+                />
+              ) : null
+            )}
+          {posts
+            .filter(post => post.announcement === false)
+            .map(post =>
+              post.classifyNum === "자유글" ? (
+                <BulletinLine
+                  post={post}
+                  setEditId={setEditId}
+                  userId={userId}
+                  action={action}
+                  setAction={setAction}
+                />
+              ) : null
+            )}
         </TabPanel>
       </TabContainer>
       {action !== "nothing" ? (
         <Bulletin postId={action} setAction={setAction} />
       ) : (
-        <EmptyBulletin />
+        <EmptyBulletin loading={false} />
       )}
     </>
   );

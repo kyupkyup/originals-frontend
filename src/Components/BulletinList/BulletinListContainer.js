@@ -31,6 +31,8 @@ BulletinListContainer.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
+      main: PropTypes.bool.isRequired,
+      announcement: PropTypes.bool.isRequired,
       author: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.string.isRequired

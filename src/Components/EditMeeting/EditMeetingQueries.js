@@ -17,6 +17,7 @@ export const SEE_MEETING = gql`
       meetingPlace
       meetingPrice
       deadline
+      coords
       meetingHeadCounts
       participants {
         id

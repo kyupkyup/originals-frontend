@@ -27,7 +27,7 @@ export const SEE_POST = gql`
 export const EDIT_POST = gql`
   mutation editPost(
     $id: String!
-    $classifyNum: Int!
+    $classifyNum: String!
     $main: Boolean!
     $announcement: Boolean!
     $title: String!
@@ -50,7 +50,7 @@ export const EDIT_POST = gql`
 
 export const WRITE_POST = gql`
   mutation upload(
-    $classifyNum: Int!
+    $classifyNum: String!
     $main: Boolean!
     $announcement: Boolean!
     $title: String!

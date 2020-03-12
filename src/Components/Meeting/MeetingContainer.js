@@ -22,8 +22,10 @@ const MeetingContainer = ({
   createdAt,
   userId,
   setEditId,
+  refetch,
   setEditing
 }) => {
+  const [loadingB, setLoading] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const [mapAction, setMapAction] = useState(false);
   const translate = coords => {
@@ -53,13 +55,19 @@ const MeetingContainer = ({
   });
 
   const participate = async () => {
+    setLoading(true);
     const {
       data: { paritcipate }
     } = await participateMutation();
     if (paritcipate) {
-      toast.success("참석에 성공했습니다.");
+      refetch();
+      toast.success("참석/참석 취소에 성공했습니다.");
+      setLoading(false);
     } else if (!participate) {
+      refetch();
+
       toast.error("다시 시도해주세요.");
+      setLoading(false);
     }
   };
 
@@ -88,6 +96,7 @@ const MeetingContainer = ({
       userId={userId}
       setEditId={setEditId}
       setEditing={setEditing}
+      loadingB={loadingB}
     />
   );
 };

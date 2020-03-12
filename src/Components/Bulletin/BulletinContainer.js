@@ -123,7 +123,7 @@ BulletinContainer.propTypes = {
       classes: PropTypes.number.isRequired
     }).isRequired
   ),
-  classifyNum: PropTypes.number.isRequired,
+  classifyNum: PropTypes.string.isRequired,
   main: PropTypes.bool.isRequired,
   announcement: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,

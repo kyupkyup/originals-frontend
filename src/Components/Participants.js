@@ -27,9 +27,13 @@ const SEE_PARTICIPANTS_LIST = gql`
 const Container = styled.div`
   width: 100%;
   padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Participant = styled.div`
+  width: 100%;
   margin: 5px 20px;
   display: flex;
   align-items: center;
