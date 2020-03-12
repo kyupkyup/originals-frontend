@@ -85,7 +85,7 @@ const EditPostContainer = ({ postId, setEdit, refetch }) => {
           toast.success("게시글이 등록되었습니다.");
         }
       } catch {
-        toast.error("게시글을 등록할 수 없습니다.");
+        toast.error("의문의 문제로 게시글을 등록할 수 없습니다.");
       } finally {
         setLoading(false);
       }
@@ -105,7 +105,7 @@ const EditPostContainer = ({ postId, setEdit, refetch }) => {
           toast.success("게시글이 수정되었습니다.");
         }
       } catch {
-        toast.error("게시글을 등록할 수 없습니다.");
+        toast.error("의문의 문제로 게시글을 등록할 수 없습니다.");
       } finally {
         setLoading(false);
       }

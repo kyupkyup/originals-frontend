@@ -114,7 +114,7 @@ const EditMeetingContainer = ({ meetingId, setEdit, refetch }) => {
             toast.error("모임을 등록할 수 없습니다.");
           }
         } catch {
-          toast.error("모임을 등록할 수 없습니다.");
+          toast.error("의문의 문제로 모임을 등록할 수 없습니다.");
         } finally {
           setLoading(false);
           setEdit("read");
@@ -144,7 +144,7 @@ const EditMeetingContainer = ({ meetingId, setEdit, refetch }) => {
             setEdit("read");
           }
         } catch {
-          toast.error("모임을 수정할 수 없습니다.");
+          toast.error("의문의 문제로 모임을 수정할 수 없습니다.");
           setEdit("read");
         } finally {
           setLoading(false);
