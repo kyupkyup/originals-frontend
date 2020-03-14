@@ -8,7 +8,6 @@ import Button from "../Button/Button";
 import Textarea from "../Textarea";
 import "react-dropdown/style.css";
 import { BREAK_POINT_MOBILE } from "../../utils/mediaQuery";
-import { Label } from "semantic-ui-react";
 import FatText from "../FatText";
 
 const Container = styled.div`

@@ -3,7 +3,6 @@ import styled, { keyframes } from "styled-components";
 import { Link, withRouter } from "react-router-dom";
 import { useQuery } from "react-apollo-hooks";
 import { ME } from "../SharedQueries";
-import { Ref } from "semantic-ui-react";
 import { BREAK_POINT_MOBILE } from "../utils/mediaQuery";
 
 const Animation = keyframes`

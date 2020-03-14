@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Spinner from "react-bootstrap/Spinner";
 const Container = styled.button`
   width: 100%;
+  height: 35px;
   border: 0;
   border-radius: ${props => props.theme.borderRadius};
   color: white;

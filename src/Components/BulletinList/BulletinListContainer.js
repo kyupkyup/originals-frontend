@@ -45,12 +45,6 @@ BulletinListContainer.propTypes = {
     })
   ).isRequired,
   setEditId: PropTypes.func
-  // id: PropTypes.string.isRequired,
-  // title: PropTypes.string.isRequired,
-  // likesCount: PropTypes.number,
-  // viewsCount: PropTypes.number,
-  // classifyNum: PropTypes.number.isRequired,
-  // createdAt: PropTypes.string.isRequired
 };
 
 export default BulletinListContainer;

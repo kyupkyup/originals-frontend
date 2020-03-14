@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import DatetimePicker, { parseDate } from "react-datetimepicker-syaku";
+import DatetimePicker from "react-datetimepicker-syaku";
 import "../Styles/css/dateCss.css";
 require("flatpickr/dist/themes/dark.css");
 

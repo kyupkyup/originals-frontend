@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import "react-tabs/style/react-tabs.css";
 // import TextareaAutoSize from "react-autosize-textarea";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";

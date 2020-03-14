@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { gql } from "apollo-boost";
 
 import { HashRouter as Router } from "react-router-dom";

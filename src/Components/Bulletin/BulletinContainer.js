@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import BulletinPresenter from "./BulletinPresenter";
-import { useQuery } from "react-apollo-hooks";
 import PropTypes from "prop-types";
-import { SEE_POST, TOGGLE_POST } from "./BulletinQueries";
 import { useMutation } from "react-apollo-hooks";
 import { TOGGLE_LIKE, ADD_COMMENT } from "./BulletinQueries";
 import { toast } from "react-toastify";
-import Button from "../Button/Button";
-import Loader from "../Loader";
 import useInput from "../../Hooks/useInput";
-import { ME } from "../../SharedQueries";
 const BulletinContainer = ({
   id,
   files,
@@ -42,10 +37,6 @@ const BulletinContainer = ({
   const [addCommentMutation] = useMutation(ADD_COMMENT, {
     variables: { postId: id, text: newComment.value }
   });
-
-  // if (isViewed === false) {
-  //   togglePostMutation();
-  // }
 
   const toggleLike = () => {
     toggleLikeMutation();

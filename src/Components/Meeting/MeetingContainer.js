@@ -60,11 +60,11 @@ const MeetingContainer = ({
       data: { paritcipate }
     } = await participateMutation();
     if (paritcipate) {
-      refetch();
+      await refetch();
       toast.success("참석/참석 취소에 성공했습니다.");
       setLoading(false);
     } else if (!participate) {
-      refetch();
+      await refetch();
 
       toast.error("다시 시도해주세요.");
       setLoading(false);

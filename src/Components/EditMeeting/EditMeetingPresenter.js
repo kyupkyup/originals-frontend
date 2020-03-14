@@ -13,10 +13,7 @@ import locale from "flatpickr/dist/l10n/ko";
 import { BREAK_POINT_MOBILE } from "../../utils/mediaQuery";
 import "../../Styles/css/mapCss.css";
 import { toast } from "react-toastify";
-import DatetimePicker, {
-  parseDate,
-  setLocale
-} from "react-datetimepicker-syaku";
+import { setLocale } from "react-datetimepicker-syaku";
 import DateInput from "../DateInput";
 import DateLimitInput from "../DateLimitInput";
 setLocale(locale.ko);
