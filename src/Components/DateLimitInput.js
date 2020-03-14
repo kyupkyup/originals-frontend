@@ -24,7 +24,7 @@ class DateLimitInput extends Component {
 
   onDatetime(datetime, value) {
     this.setState({ datetime, value });
-    this.props.setLimitState(value);
+    this.props.setState(value);
   }
 
   onOpen() {
@@ -56,6 +56,7 @@ class DateLimitInput extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <DatetimePicker
         ref={node => {

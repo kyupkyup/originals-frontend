@@ -274,7 +274,10 @@ export default ({
               메인
             </SpinnerContainer>
             <ContentContainer>
-              <DateInput setState={() => setState()} value={meetingTime} />{" "}
+              <DateInput
+                setState={meetingTime => setState(meetingTime)}
+                value={meetingTime}
+              />{" "}
             </ContentContainer>
 
             <ContentContainer>
@@ -282,7 +285,7 @@ export default ({
             </ContentContainer>
             <ContentContainer>
               <DateLimitInput
-                setState={() => setLimitState()}
+                setState={deadline => setLimitState(deadline)}
                 value={deadline}
               />{" "}
             </ContentContainer>
@@ -328,13 +331,16 @@ export default ({
               메인
             </SpinnerContainer>
             <ContentContainer>
-              <DateInput setState={setState} value={meetingTime} />{" "}
+              <DateInput setState={() => setState()} value={meetingTime} />{" "}
             </ContentContainer>
             <ContentContainer>
               <Content placeholder={"모임 비용"} {...meetingPrice} />
             </ContentContainer>
             <ContentContainer>
-              <DateLimitInput setState={setLimitState} value={deadline} />{" "}
+              <DateLimitInput
+                setState={() => setLimitState()}
+                value={deadline}
+              />{" "}
             </ContentContainer>
             <ContentContainer>
               <Content
