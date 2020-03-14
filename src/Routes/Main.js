@@ -6,6 +6,7 @@ import Post from "../Components/Bulletin";
 import Meeting from "../Components/Meeting";
 import Loader from "../Components/Loader";
 import { BREAK_POINT_MOBILE } from "../utils/mediaQuery";
+import Helmet from "react-helmet";
 
 const MAIN_POST = gql`
   {
@@ -101,10 +102,15 @@ const MeetingWrapper = styled.div`
 
 export default () => {
   const { data: dataPost, loading: loadingPost } = useQuery(MAIN_POST);
-  const { data: dataMeeting, loading: loadingMeeting } = useQuery(MAIN_MEETING);
+  const { refetch, data: dataMeeting, loading: loadingMeeting } = useQuery(
+    MAIN_MEETING
+  );
 
   return (
     <Wrapper>
+      <Helmet>
+        <title>Originals</title>
+      </Helmet>
       <Box>
         <MeetingWrapper>
           {loadingMeeting && <Loader />}
@@ -125,6 +131,7 @@ export default () => {
               isParticipated={dataMeeting.mainMeeting.isParticipated}
               participantsCount={dataMeeting.mainMeeting.participantsCount}
               createdAt={dataMeeting.mainMeeting.createdAt}
+              refetch={refetch}
             />
           )}
         </MeetingWrapper>

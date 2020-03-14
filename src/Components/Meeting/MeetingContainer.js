@@ -57,9 +57,12 @@ const MeetingContainer = ({
   const participate = async () => {
     setLoading(true);
     const {
-      data: { paritcipate }
+      data: { participate }
     } = await participateMutation();
-    if (paritcipate) {
+    console.log(participate);
+
+    if (participate) {
+      console.log(participate);
       await refetch();
       toast.success("참석/참석 취소에 성공했습니다.");
       setLoading(false);
